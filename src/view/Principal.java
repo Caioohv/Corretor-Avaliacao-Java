@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import java.awt.CardLayout;
 import javax.swing.JLayeredPane;
@@ -25,6 +26,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.awt.Dimension;
 import javax.swing.JButton;
 import java.awt.Button;
@@ -33,6 +35,7 @@ import javax.swing.JSeparator;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JList;
 
 public class Principal extends JFrame {
 
@@ -65,7 +68,7 @@ public class Principal extends JFrame {
 	private final ButtonGroup buttonGroup_18 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_19 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_20 = new ButtonGroup();
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -86,7 +89,7 @@ public class Principal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	
+	ArrayList<Integer> anos;
 	
 	public Principal() {
 		
@@ -1459,6 +1462,14 @@ public class Principal extends JFrame {
 				lblSair.setForeground(new Color(255, 255, 204));
 			}
 		});
+		//codigo na mao
+		DefaultComboBoxModel<Integer> dcm = new DefaultComboBoxModel<Integer>();
+		for(int i = 2020; i > 1900; i--) {
+			dcm.addElement(i);
+			
+		}
+		jcAno.setModel(dcm);
+		
 		
 	}
 }
