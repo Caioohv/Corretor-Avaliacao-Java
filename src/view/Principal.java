@@ -8,7 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
+import dataAcess.DAOGabarito;
 import javafx.scene.control.TableColumn;
+import modelo.Gabarito;
 
 import java.awt.Color;
 import java.awt.Label;
@@ -272,6 +274,17 @@ public class Principal extends JFrame {
 		});
 		btnContinuar.setBounds(660, 649, 92, 22);
 		gabarito.add(btnContinuar);
+		
+		JComboBox jcArea = new JComboBox();
+		jcArea.setBounds(312, 511, 144, 20);
+		gabarito.add(jcArea);
+		
+		JLabel lblrea = new JLabel("\u00C1rea");
+		lblrea.setHorizontalAlignment(SwingConstants.CENTER);
+		lblrea.setForeground(new Color(51, 51, 51));
+		lblrea.setFont(new Font("Teko", Font.PLAIN, 24));
+		lblrea.setBounds(10, 480, 742, 31);
+		gabarito.add(lblrea);
 		
 		cursos = new JPanel();
 		cursos.setBackground(Color.WHITE);
@@ -1331,6 +1344,10 @@ public class Principal extends JFrame {
 							layeredPane.add(home);
 							layeredPane.repaint();
 							layeredPane.revalidate();
+							Gabarito g = new Gabarito(resps, jcArea.getSelectedItem().toString(), Integer.parseInt(jcAno.getSelectedItem().toString()), Integer.parseInt(jcEtapa.getSelectedItem().toString()), jcTipo.getSelectedItem().toString());
+							//Gabarito g = new Gabarito(resps, "Linguagens", 1, 1,"C");
+							System.out.println(g);
+							DAOGabarito.insert(g);
 						}
 						
 				
@@ -1444,5 +1461,4 @@ public class Principal extends JFrame {
 		});
 		
 	}
-	
 }
