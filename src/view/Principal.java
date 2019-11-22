@@ -84,6 +84,7 @@ public class Principal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public Principal() {
 		
 		//att//
@@ -209,15 +210,6 @@ public class Principal extends JFrame {
 		lblGabaritos.setBounds(10, 11, 742, 66);
 		gabarito.add(lblGabaritos);
 		
-		Button btnContinuar = new Button("Continuar");
-		btnContinuar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showConfirmDialog(null, "Informações:\n");
-			}
-		});
-		btnContinuar.setBounds(660, 649, 92, 22);
-		gabarito.add(btnContinuar);
-		
 		JComboBox jcAno = new JComboBox();
 		jcAno.setBounds(312, 254, 144, 20);
 		gabarito.add(jcAno);
@@ -226,7 +218,7 @@ public class Principal extends JFrame {
 		lblAno.setForeground(new Color(51, 51, 51));
 		lblAno.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAno.setFont(new Font("Teko", Font.PLAIN, 24));
-		lblAno.setBounds(312, 230, 144, 22);
+		lblAno.setBounds(10, 230, 742, 22);
 		gabarito.add(lblAno);
 		
 		JComboBox jcEtapa = new JComboBox();
@@ -237,18 +229,18 @@ public class Principal extends JFrame {
 		lblEtapa.setForeground(new Color(51, 51, 51));
 		lblEtapa.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEtapa.setFont(new Font("Teko", Font.PLAIN, 24));
-		lblEtapa.setBounds(312, 307, 144, 31);
+		lblEtapa.setBounds(10, 307, 742, 31);
 		gabarito.add(lblEtapa);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(312, 426, 144, 20);
-		gabarito.add(comboBox);
+		JComboBox jcTipo = new JComboBox();
+		jcTipo.setBounds(312, 426, 144, 20);
+		gabarito.add(jcTipo);
 		
 		JLabel lblTipo = new JLabel("Tipo");
 		lblTipo.setForeground(new Color(51, 51, 51));
 		lblTipo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTipo.setFont(new Font("Teko", Font.PLAIN, 24));
-		lblTipo.setBounds(312, 395, 144, 31);
+		lblTipo.setBounds(10, 395, 742, 31);
 		gabarito.add(lblTipo);
 		
 		JSeparator separator = new JSeparator();
@@ -260,6 +252,25 @@ public class Principal extends JFrame {
 		separator_1.setForeground(SystemColor.inactiveCaption);
 		separator_1.setBounds(470, 291, -179, -8);
 		gabarito.add(separator_1);
+		
+		Button btnContinuar = new Button("Continuar");
+		btnContinuar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int aa = JOptionPane.showConfirmDialog(null, "Informações:\nAno: "+jcAno.getSelectedItem()+"\nEtapa: "+jcEtapa.getSelectedItem()+"\nTipo: "+jcTipo.getSelectedItem());
+				System.out.println(aa);
+				System.out.println(JOptionPane.OK_OPTION);
+				if(aa == 0) {
+					layeredPane.removeAll();
+					layeredPane.add(criaGabarito);
+					layeredPane.repaint();
+					layeredPane.revalidate();
+				}
+
+				//criaGabarito
+			}
+		});
+		btnContinuar.setBounds(660, 649, 92, 22);
+		gabarito.add(btnContinuar);
 		
 		cursos = new JPanel();
 		cursos.setBackground(Color.WHITE);
