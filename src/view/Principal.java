@@ -89,7 +89,13 @@ public class Principal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	ArrayList<Integer> anos;
+	
+	
+	
+			DefaultComboBoxModel<Integer> dcm;
+			DefaultComboBoxModel<Character> dcm2;
+			DefaultComboBoxModel<Integer> dcm3;
+
 	
 	public Principal() {
 		
@@ -1470,6 +1476,19 @@ public class Principal extends JFrame {
 		}
 		jcAno.setModel(dcm);
 		
+		
+		DefaultComboBoxModel<Character> dcm2 = new DefaultComboBoxModel<Character>();
+		dcm2.addElement('A');
+		dcm2.addElement('B');
+		dcm2.addElement('C');
+		jcTipo.setModel(dcm2);
+		
+		
+		DefaultComboBoxModel<Integer> dcm3 = new DefaultComboBoxModel<Integer>();
+		dcm3.addElement(1);
+		dcm3.addElement(2);
+		dcm3.addElement(3);
+		jcEtapa.setModel(dcm);
 		
 	}
 }
