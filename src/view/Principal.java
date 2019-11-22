@@ -281,7 +281,7 @@ public class Principal extends JFrame {
 				//criaGabarito
 			}
 		});
-		btnContinuar.setBounds(660, 649, 92, 22);
+		btnContinuar.setBounds(639, 640, 113, 31);
 		gabarito.add(btnContinuar);
 		
 		JComboBox jcArea = new JComboBox();
@@ -346,6 +346,54 @@ public class Principal extends JFrame {
 		lblEfetuarCorrecao.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 30));
 		lblEfetuarCorrecao.setBounds(10, 11, 742, 66);
 		correcao.add(lblEfetuarCorrecao);
+		
+		JComboBox jcAnoCad = new JComboBox();
+		jcAnoCad.setBounds(312, 196, 144, 20);
+		correcao.add(jcAnoCad);
+		
+		JLabel label_20 = new JLabel("Ano:");
+		label_20.setHorizontalAlignment(SwingConstants.CENTER);
+		label_20.setForeground(new Color(51, 51, 51));
+		label_20.setFont(new Font("Teko", Font.PLAIN, 24));
+		label_20.setBounds(10, 172, 742, 22);
+		correcao.add(label_20);
+		
+		JLabel label_21 = new JLabel("Etapa:");
+		label_21.setHorizontalAlignment(SwingConstants.CENTER);
+		label_21.setForeground(new Color(51, 51, 51));
+		label_21.setFont(new Font("Teko", Font.PLAIN, 24));
+		label_21.setBounds(10, 249, 742, 31);
+		correcao.add(label_21);
+		
+		JComboBox jcEtapaCad = new JComboBox();
+		jcEtapaCad.setBounds(312, 280, 144, 20);
+		correcao.add(jcEtapaCad);
+		
+		JLabel label_22 = new JLabel("Tipo");
+		label_22.setHorizontalAlignment(SwingConstants.CENTER);
+		label_22.setForeground(new Color(51, 51, 51));
+		label_22.setFont(new Font("Teko", Font.PLAIN, 24));
+		label_22.setBounds(10, 337, 742, 31);
+		correcao.add(label_22);
+		
+		JComboBox jcTipoCad = new JComboBox();
+		jcTipoCad.setBounds(312, 368, 144, 20);
+		correcao.add(jcTipoCad);
+		
+		JLabel label_23 = new JLabel("\u00C1rea");
+		label_23.setHorizontalAlignment(SwingConstants.CENTER);
+		label_23.setForeground(new Color(51, 51, 51));
+		label_23.setFont(new Font("Teko", Font.PLAIN, 24));
+		label_23.setBounds(10, 422, 742, 31);
+		correcao.add(label_23);
+		
+		JComboBox jcAreaCad = new JComboBox();
+		jcAreaCad.setBounds(312, 453, 144, 20);
+		correcao.add(jcAreaCad);
+		
+		Button button = new Button("Continuar");
+		button.setBounds(639, 640, 113, 31);
+		correcao.add(button);
 		
 		criaGabarito = new JPanel();
 		criaGabarito.setBackground(Color.WHITE);
