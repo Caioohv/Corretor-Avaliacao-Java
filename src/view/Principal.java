@@ -43,7 +43,7 @@ public class Principal extends JFrame {
 	private JPanel criaGabarito;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
-	private JRadioButton radioButton_2c;
+	private JRadioButton radioButton_1B;
 	private final ButtonGroup buttonGroup_2 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_3 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_4 = new ButtonGroup();
@@ -353,12 +353,12 @@ public class Principal extends JFrame {
 		radioButton_1A.setBounds(202, 156, 35, 34);
 		criaGabarito.add(radioButton_1A);
 		
-		radioButton_2c = new JRadioButton("B");
-		buttonGroup_1.add(radioButton_2c);
-		radioButton_2c.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 13));
-		radioButton_2c.setBackground(Color.WHITE);
-		radioButton_2c.setBounds(239, 156, 35, 34);
-		criaGabarito.add(radioButton_2c);
+		radioButton_1B = new JRadioButton("B");
+		buttonGroup_1.add(radioButton_1B);
+		radioButton_1B.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 13));
+		radioButton_1B.setBackground(Color.WHITE);
+		radioButton_1B.setBounds(239, 156, 35, 34);
+		criaGabarito.add(radioButton_1B);
 		
 		JRadioButton radioButton_1C = new JRadioButton("C");
 		buttonGroup_1.add(radioButton_1C);
@@ -626,12 +626,12 @@ public class Principal extends JFrame {
 		radioButton_10D.setBounds(313, 489, 35, 34);
 		criaGabarito.add(radioButton_10D);
 		
-		JRadioButton radioButton11A = new JRadioButton("A");
-		buttonGroup_11.add(radioButton11A);
-		radioButton11A.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 13));
-		radioButton11A.setBackground(Color.WHITE);
-		radioButton11A.setBounds(450, 156, 35, 34);
-		criaGabarito.add(radioButton11A);
+		JRadioButton radioButton_11A = new JRadioButton("A");
+		buttonGroup_11.add(radioButton_11A);
+		radioButton_11A.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 13));
+		radioButton_11A.setBackground(Color.WHITE);
+		radioButton_11A.setBounds(450, 156, 35, 34);
+		criaGabarito.add(radioButton_11A);
 		
 		JRadioButton radioButton_11B = new JRadioButton("B");
 		buttonGroup_11.add(radioButton_11B);
@@ -1043,6 +1043,8 @@ public class Principal extends JFrame {
 		btnGerarGabarito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				resps = "";
+				
+				////////// RESPS 1 A 5
 				if(radioButton_1A.isSelected()) {
 					resps = resps + "A";
 				}
@@ -1107,6 +1109,230 @@ public class Principal extends JFrame {
 				if(radioButton_5D.isSelected()) {
 					resps = resps + "D";
 				}
+		////////// RESPS 6 A 10
+						if(radioButton_6A.isSelected()) {
+							resps = resps + "A";
+						}
+						if(radioButton_6B.isSelected()) {
+							resps = resps + "B";
+						}
+						if(radioButton_6C.isSelected()) {
+							resps = resps + "C";
+						}
+						if(radioButton_6D.isSelected()) {
+							resps = resps + "D";
+						}
+						
+						if(radioButton_7A.isSelected()) {
+							resps = resps + "A";
+						}
+						if(radioButton_7B.isSelected()) {
+							resps = resps + "B";
+						}
+						if(radioButton_7C.isSelected()) {
+							resps = resps + "C";
+						}
+						if(radioButton_7D.isSelected()) {
+							resps = resps + "D";
+						}
+						
+						if(radioButton_8A.isSelected()) {
+							resps = resps + "A";
+						}
+						if(radioButton_8B.isSelected()) {
+							resps = resps + "B";
+						}
+						if(radioButton_8C.isSelected()) {
+							resps = resps + "C";
+						}
+						if(radioButton_8D.isSelected()) {
+							resps = resps + "D";
+						}
+						
+						if(radioButton_9A.isSelected()) {
+							resps = resps + "A";
+						}
+						if(radioButton_9B.isSelected()) {
+							resps = resps + "B";
+						}
+						if(radioButton_9C.isSelected()) {
+							resps = resps + "C";
+						}
+						if(radioButton_9D.isSelected()) {
+							resps = resps + "D";
+						}
+						
+				////////// RESPS 10 A 15
+						if(radioButton_10A.isSelected()) {
+							resps = resps + "A";
+						}
+						if(radioButton_10B.isSelected()) {
+							resps = resps + "B";
+						}
+						if(radioButton_10C.isSelected()) {
+							resps = resps + "C";
+						}
+						if(radioButton_10D.isSelected()) {
+							resps = resps + "D";
+						}
+						
+						if(radioButton_11A.isSelected()) {
+							resps = resps + "A";
+						}
+						if(radioButton_11B.isSelected()) {
+							resps = resps + "B";
+						}
+						if(radioButton_11C.isSelected()) {
+							resps = resps + "C";
+						}
+						if(radioButton_11D.isSelected()) {
+							resps = resps + "D";
+						}
+						
+						if(radioButton_12A.isSelected()) {
+							resps = resps + "A";
+						}
+						if(radioButton_12B.isSelected()) {
+							resps = resps + "B";
+						}
+						if(radioButton_12C.isSelected()) {
+							resps = resps + "C";
+						}
+						if(radioButton_12D.isSelected()) {
+							resps = resps + "D";
+						}
+						
+						if(radioButton_13A.isSelected()) {
+							resps = resps + "A";
+						}
+						if(radioButton_13B.isSelected()) {
+							resps = resps + "B";
+						}
+						if(radioButton_13C.isSelected()) {
+							resps = resps + "C";
+						}
+						if(radioButton_13D.isSelected()) {
+							resps = resps + "D";
+						}
+						
+						if(radioButton_14A.isSelected()) {
+							resps = resps + "A";
+						}
+						if(radioButton_14B.isSelected()) {
+							resps = resps + "B";
+						}
+						if(radioButton_14C.isSelected()) {
+							resps = resps + "C";
+						}
+						if(radioButton_14D.isSelected()) {
+							resps = resps + "D";
+						}
+						
+						if(radioButton_15A.isSelected()) {
+							resps = resps + "A";
+						}
+						if(radioButton_15B.isSelected()) {
+							resps = resps + "B";
+						}
+						if(radioButton_15C.isSelected()) {
+							resps = resps + "C";
+						}
+						if(radioButton_15D.isSelected()) {
+							resps = resps + "D";
+						}
+							
+						if(radioButton_15A.isSelected()) {
+							resps = resps + "A";
+						}
+						if(radioButton_15B.isSelected()) {
+							resps = resps + "B";
+						}
+						if(radioButton_15C.isSelected()) {
+							resps = resps + "C";
+						}
+						if(radioButton_15D.isSelected()) {
+							resps = resps + "D";
+						}
+						///////// 16 a 20
+						
+						
+						
+						
+						if(radioButton_16A.isSelected()) {
+							resps = resps + "A";
+						}
+						if(radioButton_16B.isSelected()) {
+							resps = resps + "B";
+						}
+						if(radioButton_16C.isSelected()) {
+							resps = resps + "C";
+						}
+						if(radioButton_16D.isSelected()) {
+							resps = resps + "D";
+						}
+						
+						if(radioButton_17A.isSelected()) {
+							resps = resps + "A";
+						}
+						if(radioButton_17B.isSelected()) {
+							resps = resps + "B";
+						}
+						if(radioButton_17C.isSelected()) {
+							resps = resps + "C";
+						}
+						if(radioButton_17D.isSelected()) {
+							resps = resps + "D";
+						}
+						
+						if(radioButton_18A.isSelected()) {
+							resps = resps + "A";
+						}
+						if(radioButton_18B.isSelected()) {
+							resps = resps + "B";
+						}
+						if(radioButton_18C.isSelected()) {
+							resps = resps + "C";
+						}
+						if(radioButton_18D.isSelected()) {
+							resps = resps + "D";
+						}
+						
+						if(radioButton_19A.isSelected()) {
+							resps = resps + "A";
+						}
+						if(radioButton_19B.isSelected()) {
+							resps = resps + "B";
+						}
+						if(radioButton_19C.isSelected()) {
+							resps = resps + "C";
+						}
+						if(radioButton_19D.isSelected()) {
+							resps = resps + "D";
+						}
+						if(radioButton_20A.isSelected()) {
+							resps = resps + "A";
+						}
+						if(radioButton_20B.isSelected()) {
+							resps = resps + "B";
+						}
+						if(radioButton_20C.isSelected()) {
+							resps = resps + "C";
+						}
+						if(radioButton_20D.isSelected()) {
+							resps = resps + "D";
+						}
+						
+						int aa = JOptionPane.showConfirmDialog(null, "Informações:\n\nRespostas: "+resps);
+						System.out.println(aa);
+						System.out.println(JOptionPane.OK_OPTION);
+						if(aa == 0) {
+							JOptionPane.showMessageDialog(null, "Inserido!");
+							layeredPane.removeAll();
+							layeredPane.add(home);
+							layeredPane.repaint();
+							layeredPane.revalidate();
+						}
+						
 				
 			}
 		});
