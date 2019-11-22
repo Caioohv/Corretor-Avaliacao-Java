@@ -43,7 +43,7 @@ public class Principal extends JFrame {
 	private JPanel criaGabarito;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
-	private JRadioButton radioButton_1B;
+	private JRadioButton radioButton_2c;
 	private final ButtonGroup buttonGroup_2 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_3 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_4 = new ButtonGroup();
@@ -80,10 +80,11 @@ public class Principal extends JFrame {
 			}
 		});
 	}
-
+	private String resps = "";
 	/**
 	 * Create the frame.
 	 */
+	
 	
 	public Principal() {
 		
@@ -338,13 +339,6 @@ public class Principal extends JFrame {
 		lblCrieSeuGabarito.setBounds(10, 11, 742, 66);
 		criaGabarito.add(lblCrieSeuGabarito);
 		
-		JRadioButton radioButton_1A = new JRadioButton("A");
-		buttonGroup_1.add(radioButton_1A);
-		radioButton_1A.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 13));
-		radioButton_1A.setBackground(Color.WHITE);
-		radioButton_1A.setBounds(202, 156, 35, 34);
-		criaGabarito.add(radioButton_1A);
-		
 		JLabel label_4 = new JLabel("1)");
 		label_4.setHorizontalAlignment(SwingConstants.CENTER);
 		label_4.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
@@ -352,12 +346,19 @@ public class Principal extends JFrame {
 		label_4.setBounds(168, 156, 28, 34);
 		criaGabarito.add(label_4);
 		
-		radioButton_1B = new JRadioButton("B");
-		buttonGroup_1.add(radioButton_1B);
-		radioButton_1B.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 13));
-		radioButton_1B.setBackground(Color.WHITE);
-		radioButton_1B.setBounds(239, 156, 35, 34);
-		criaGabarito.add(radioButton_1B);
+		JRadioButton radioButton_1A = new JRadioButton("A");
+		buttonGroup_1.add(radioButton_1A);
+		radioButton_1A.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 13));
+		radioButton_1A.setBackground(Color.WHITE);
+		radioButton_1A.setBounds(202, 156, 35, 34);
+		criaGabarito.add(radioButton_1A);
+		
+		radioButton_2c = new JRadioButton("B");
+		buttonGroup_1.add(radioButton_2c);
+		radioButton_2c.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 13));
+		radioButton_2c.setBackground(Color.WHITE);
+		radioButton_2c.setBounds(239, 156, 35, 34);
+		criaGabarito.add(radioButton_2c);
 		
 		JRadioButton radioButton_1C = new JRadioButton("C");
 		buttonGroup_1.add(radioButton_1C);
@@ -1038,9 +1039,79 @@ public class Principal extends JFrame {
 		label_19.setBounds(416, 489, 28, 34);
 		criaGabarito.add(label_19);
 		
-		JButton btnNewButton = new JButton("Definir Gabarito");
-		btnNewButton.setBounds(293, 569, 155, 42);
-		criaGabarito.add(btnNewButton);
+		Button btnGerarGabarito = new Button("Criar");
+		btnGerarGabarito.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				resps = "";
+				if(radioButton_1A.isSelected()) {
+					resps = resps + "A";
+				}
+				if(radioButton_1B.isSelected()) {
+					resps = resps + "B";
+				}
+				if(radioButton_1C.isSelected()) {
+					resps = resps + "C";
+				}
+				if(radioButton_1D.isSelected()) {
+					resps = resps + "D";
+				}
+				
+				if(radioButton_2A.isSelected()) {
+					resps = resps + "A";
+				}
+				if(radioButton_2B.isSelected()) {
+					resps = resps + "B";
+				}
+				if(radioButton_2C.isSelected()) {
+					resps = resps + "C";
+				}
+				if(radioButton_2D.isSelected()) {
+					resps = resps + "D";
+				}
+				
+				if(radioButton_3A.isSelected()) {
+					resps = resps + "A";
+				}
+				if(radioButton_3B.isSelected()) {
+					resps = resps + "B";
+				}
+				if(radioButton_3C.isSelected()) {
+					resps = resps + "C";
+				}
+				if(radioButton_3D.isSelected()) {
+					resps = resps + "D";
+				}
+				
+				if(radioButton_4A.isSelected()) {
+					resps = resps + "A";
+				}
+				if(radioButton_4B.isSelected()) {
+					resps = resps + "B";
+				}
+				if(radioButton_4C.isSelected()) {
+					resps = resps + "C";
+				}
+				if(radioButton_4D.isSelected()) {
+					resps = resps + "D";
+				}
+				
+				if(radioButton_5A.isSelected()) {
+					resps = resps + "A";
+				}
+				if(radioButton_5B.isSelected()) {
+					resps = resps + "B";
+				}
+				if(radioButton_5C.isSelected()) {
+					resps = resps + "C";
+				}
+				if(radioButton_5D.isSelected()) {
+					resps = resps + "D";
+				}
+				
+			}
+		});
+		btnGerarGabarito.setBounds(293, 562, 151, 34);
+		criaGabarito.add(btnGerarGabarito);
 		
 		javax.swing.table.TableColumn tc = new javax.swing.table.TableColumn();
 		tc.setHeaderValue("Coluna1");
@@ -1147,4 +1218,5 @@ public class Principal extends JFrame {
 		});
 		
 	}
+	
 }
