@@ -7,10 +7,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import dataAcess.DAOGabarito;
 import javafx.scene.control.TableColumn;
+import modelo.Cartao;
 import modelo.Gabarito;
+import corretor.Main;
 
 import java.awt.Color;
 import java.awt.Label;
@@ -36,6 +39,7 @@ import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
 
 public class Principal extends JFrame {
 	private Gabarito novoGab;
@@ -95,6 +99,7 @@ public class Principal extends JFrame {
 			DefaultComboBoxModel<Integer> dcm;
 			DefaultComboBoxModel<Character> dcm2;
 			DefaultComboBoxModel<Integer> dcm3;
+			private JTable jtCorrecao;
 
 	
 	public Principal() {
@@ -223,36 +228,36 @@ public class Principal extends JFrame {
 		gabarito.add(lblGabaritos);
 		
 		JComboBox jcAno = new JComboBox();
-		jcAno.setBounds(281, 254, 210, 20);
+		jcAno.setBounds(273, 206, 222, 20);
 		gabarito.add(jcAno);
 		
 		JLabel lblAno = new JLabel("Ano:");
 		lblAno.setForeground(new Color(51, 51, 51));
 		lblAno.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAno.setFont(new Font("Teko", Font.PLAIN, 24));
-		lblAno.setBounds(10, 230, 742, 22);
+		lblAno.setBounds(10, 181, 742, 22);
 		gabarito.add(lblAno);
 		
 		JComboBox jcEtapa = new JComboBox();
-		jcEtapa.setBounds(281, 338, 210, 20);
+		jcEtapa.setBounds(273, 290, 222, 20);
 		gabarito.add(jcEtapa);
 		
-		JLabel lblEtapa = new JLabel("Etapa:");
+		JLabel lblEtapa = new JLabel("Etapa / Per\u00EDodo:");
 		lblEtapa.setForeground(new Color(51, 51, 51));
 		lblEtapa.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEtapa.setFont(new Font("Teko", Font.PLAIN, 24));
-		lblEtapa.setBounds(10, 307, 742, 31);
+		lblEtapa.setBounds(10, 258, 742, 31);
 		gabarito.add(lblEtapa);
 		
 		JComboBox jcTipo = new JComboBox();
-		jcTipo.setBounds(281, 426, 210, 20);
+		jcTipo.setBounds(273, 378, 222, 20);
 		gabarito.add(jcTipo);
 		
 		JLabel lblTipo = new JLabel("Tipo");
 		lblTipo.setForeground(new Color(51, 51, 51));
 		lblTipo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTipo.setFont(new Font("Teko", Font.PLAIN, 24));
-		lblTipo.setBounds(10, 395, 742, 31);
+		lblTipo.setBounds(10, 346, 742, 31);
 		gabarito.add(lblTipo);
 		
 		JSeparator separator = new JSeparator();
@@ -287,14 +292,14 @@ public class Principal extends JFrame {
 		gabarito.add(btnContinuar);
 		
 		JComboBox jcArea = new JComboBox();
-		jcArea.setBounds(281, 511, 210, 20);
+		jcArea.setBounds(273, 463, 222, 20);
 		gabarito.add(jcArea);
 		
 		JLabel lblrea = new JLabel("\u00C1rea");
 		lblrea.setHorizontalAlignment(SwingConstants.CENTER);
 		lblrea.setForeground(new Color(51, 51, 51));
 		lblrea.setFont(new Font("Teko", Font.PLAIN, 24));
-		lblrea.setBounds(10, 480, 742, 31);
+		lblrea.setBounds(10, 431, 742, 31);
 		gabarito.add(lblrea);
 		
 		cursos = new JPanel();
@@ -350,7 +355,7 @@ public class Principal extends JFrame {
 		correcao.add(lblEfetuarCorrecao);
 		
 		JComboBox jcAnoCad = new JComboBox();
-		jcAnoCad.setBounds(312, 196, 144, 20);
+		jcAnoCad.setBounds(268, 204, 228, 20);
 		correcao.add(jcAnoCad);
 		
 		JLabel label_20 = new JLabel("Ano:");
@@ -368,7 +373,7 @@ public class Principal extends JFrame {
 		correcao.add(label_21);
 		
 		JComboBox jcEtapaCad = new JComboBox();
-		jcEtapaCad.setBounds(312, 280, 144, 20);
+		jcEtapaCad.setBounds(268, 288, 228, 20);
 		correcao.add(jcEtapaCad);
 		
 		JLabel label_22 = new JLabel("Tipo");
@@ -379,7 +384,7 @@ public class Principal extends JFrame {
 		correcao.add(label_22);
 		
 		JComboBox jcTipoCad = new JComboBox();
-		jcTipoCad.setBounds(312, 368, 144, 20);
+		jcTipoCad.setBounds(268, 376, 228, 20);
 		correcao.add(jcTipoCad);
 		
 		JLabel label_23 = new JLabel("\u00C1rea");
@@ -390,12 +395,34 @@ public class Principal extends JFrame {
 		correcao.add(label_23);
 		
 		JComboBox jcAreaCad = new JComboBox();
-		jcAreaCad.setBounds(312, 453, 144, 20);
+		jcAreaCad.setBounds(268, 461, 228, 20);
 		correcao.add(jcAreaCad);
 		
 		Button button = new Button("Continuar");
+		
 		button.setBounds(639, 640, 113, 31);
 		correcao.add(button);
+		
+		JPanel posCorrecao = new JPanel();
+		posCorrecao.setBackground(Color.WHITE);
+		layeredPane.add(posCorrecao, "name_76020274173900");
+		posCorrecao.setLayout(null);
+		
+		JLabel lblCorrees = new JLabel("Corre\u00E7\u00F5es");
+		lblCorrees.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblCorrees.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCorrees.setForeground(new Color(0, 0, 51));
+		lblCorrees.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 30));
+		lblCorrees.setBounds(10, 11, 742, 66);
+		posCorrecao.add(lblCorrees);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 134, 742, 424);
+		posCorrecao.add(scrollPane);
+		
+		jtCorrecao = new JTable();
+		scrollPane.setViewportView(jtCorrecao);
+		jtCorrecao.setBackground(new Color(255, 255, 255));
 		
 		criaGabarito = new JPanel();
 		criaGabarito.setBackground(Color.WHITE);
@@ -1448,6 +1475,50 @@ public class Principal extends JFrame {
 				lblGabaritos.setForeground(new Color(255, 255, 204));
 				lblOsk.setForeground(new Color(255, 255, 204));
 				lblSair.setForeground(new Color(255, 255, 204));
+				
+				DefaultComboBoxModel<Integer> dcm = new DefaultComboBoxModel<Integer>();
+				for(int i = 2020; i > 1900; i--) {
+					dcm.addElement(i);
+					
+				}
+				jcAnoCad.setModel(dcm);
+				
+				
+				DefaultComboBoxModel<Character> dcm2 = new DefaultComboBoxModel<Character>();
+				dcm2.addElement('A');
+				dcm2.addElement('B');
+				dcm2.addElement('C');
+				jcTipoCad.setModel(dcm2);
+				
+				
+				DefaultComboBoxModel<Integer> dcm3 = new DefaultComboBoxModel<Integer>();
+				dcm3.addElement(1);
+				dcm3.addElement(2);
+				dcm3.addElement(3);
+				dcm3.addElement(4);
+				jcEtapaCad.setModel(dcm3);
+				
+				//De acordo com a universidade federal fluminense, são essas as áreas do conhecimento.
+				DefaultComboBoxModel<String> dcmArea = new DefaultComboBoxModel<String>();
+				dcmArea.addElement("Ciências Exatas e da Terra");
+				dcmArea.addElement("Ciências Biológicas");
+				dcmArea.addElement("Engenharia / Tecnologia");
+				dcmArea.addElement("Ciências da Saúde");
+				dcmArea.addElement("Ciências Agrárias");
+				dcmArea.addElement("Ciências Sociais");
+				dcmArea.addElement("Ciências Humanas");
+				dcmArea.addElement("Linguística");
+				dcmArea.addElement("Letras e Artes");
+				jcAreaCad.setModel(dcmArea);
+				
+
+				layeredPane.removeAll();
+				layeredPane.add(correcao);
+				layeredPane.repaint();
+				layeredPane.revalidate();
+				
+				
+				
 					
 			}
 		});
@@ -1553,7 +1624,33 @@ public class Principal extends JFrame {
 		dcmArea.addElement("Linguística");
 		dcmArea.addElement("Letras e Artes");
 		jcArea.setModel(dcmArea);
-		
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ArrayList<Cartao> ar = new ArrayList<Cartao>();
+				DefaultTableModel dcm = new DefaultTableModel();
+				dcm.addColumn("RA:");
+				dcm.addColumn("Resultado:");
+				dcm.addColumn("Correção:");
+				dcm.addColumn("Respostas:");
+				try {
+					ar = Main.lerGabaritoR();
+					
+					
+					for(Cartao c: ar) {
+						dcm.addRow(new Object[] {c.getAluno(), c.getResultado(), c.getCorrecao(), c.getResps()});
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					System.out.println(e);
+				}finally {
+					jtCorrecao.setModel(dcm);
+					layeredPane.removeAll();
+					layeredPane.add(posCorrecao);
+					layeredPane.repaint();
+					layeredPane.revalidate();
+				}
+			}
+		});
 		
 		
 	}

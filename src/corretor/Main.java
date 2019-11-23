@@ -81,7 +81,7 @@ public class Main {
             }
             System.out.println(resps);
             Cartao c = new Cartao();
-            c.setAluno(Integer.parseInt(JOptionPane.showInputDialog(null, "Qual o RA do aluno do arquivo "+s+" ?")));
+            c.setAluno((JOptionPane.showInputDialog(null, "Qual o RA do aluno do arquivo "+s+" ?")));
             c.setResps(resps);
             
             ar.add(c);
@@ -212,6 +212,31 @@ public static ArrayList<String> getPaths() throws Exception {
 			System.out.println("\n\n----- 		---------");
 			
 		}
+	}
+	public static ArrayList<Cartao> lerGabaritoR() throws Exception {
+		String resps; int ano = 2019; int etapa = 3;
+		int valorProva=10, qntquestoes=20;
+		
+		ArrayList<Cartao> valores = ler();
+		for(Cartao c: valores) {
+		cadastroGabarito.corretor.corrigir(c);
+		}
+		
+		//Atribui nota
+		for(Cartao c: valores) {
+			cadastroGabarito.corretor.avaliar(c, valorProva, qntquestoes);
+		}
+		
+		System.out.println("\n\n --- --- --- --- --- --- ---:");
+		for(Cartao c: valores) {
+			System.out.println("RA:		"+c.getAluno());
+			System.out.println("Nota: 		"+c.getResultado());
+			System.out.println("Correção:	"+c.getCorrecao());
+			System.out.println("Respostas: 	"+c.getResps());
+			System.out.println("\n\n----- 		---------");
+			
+		}
+		return valores;
 	}
     
 }

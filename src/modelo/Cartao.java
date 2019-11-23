@@ -10,9 +10,9 @@ public class Cartao {
 */
 	
 	
-	private int id, aluno; //RA
+	private int id; //RA
 	private double resultado;
-	private String resps = "", correcao = "";
+	private String resps = "", correcao = "", aluno = "";
 	public String getResps() {
 		return resps;
 	}
@@ -25,10 +25,10 @@ public class Cartao {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getAluno() {
+	public String getAluno() {
 		return aluno;
 	}
-	public void setAluno(int aluno) {
+	public void setAluno(String aluno) {
 		this.aluno = aluno;
 	}
 	public double getResultado() {
