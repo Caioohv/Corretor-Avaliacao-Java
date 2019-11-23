@@ -38,7 +38,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JList;
 
 public class Principal extends JFrame {
-
+	private Gabarito novoGab;
 	private JPanel contentPane;
 	private JPanel gabaritos;
 	private JPanel correcao;
@@ -223,7 +223,7 @@ public class Principal extends JFrame {
 		gabarito.add(lblGabaritos);
 		
 		JComboBox jcAno = new JComboBox();
-		jcAno.setBounds(312, 254, 144, 20);
+		jcAno.setBounds(281, 254, 210, 20);
 		gabarito.add(jcAno);
 		
 		JLabel lblAno = new JLabel("Ano:");
@@ -234,7 +234,7 @@ public class Principal extends JFrame {
 		gabarito.add(lblAno);
 		
 		JComboBox jcEtapa = new JComboBox();
-		jcEtapa.setBounds(312, 338, 144, 20);
+		jcEtapa.setBounds(281, 338, 210, 20);
 		gabarito.add(jcEtapa);
 		
 		JLabel lblEtapa = new JLabel("Etapa:");
@@ -245,7 +245,7 @@ public class Principal extends JFrame {
 		gabarito.add(lblEtapa);
 		
 		JComboBox jcTipo = new JComboBox();
-		jcTipo.setBounds(312, 426, 144, 20);
+		jcTipo.setBounds(281, 426, 210, 20);
 		gabarito.add(jcTipo);
 		
 		JLabel lblTipo = new JLabel("Tipo");
@@ -271,7 +271,9 @@ public class Principal extends JFrame {
 				int aa = JOptionPane.showConfirmDialog(null, "Informações:\nAno: "+jcAno.getSelectedItem()+"\nEtapa: "+jcEtapa.getSelectedItem()+"\nTipo: "+jcTipo.getSelectedItem());
 				System.out.println(aa);
 				System.out.println(JOptionPane.OK_OPTION);
+					
 				if(aa == 0) {
+					
 					layeredPane.removeAll();
 					layeredPane.add(criaGabarito);
 					layeredPane.repaint();
@@ -285,7 +287,7 @@ public class Principal extends JFrame {
 		gabarito.add(btnContinuar);
 		
 		JComboBox jcArea = new JComboBox();
-		jcArea.setBounds(312, 511, 144, 20);
+		jcArea.setBounds(281, 511, 210, 20);
 		gabarito.add(jcArea);
 		
 		JLabel lblrea = new JLabel("\u00C1rea");
@@ -1536,7 +1538,23 @@ public class Principal extends JFrame {
 		dcm3.addElement(1);
 		dcm3.addElement(2);
 		dcm3.addElement(3);
-		jcEtapa.setModel(dcm);
+		dcm3.addElement(4);
+		jcEtapa.setModel(dcm3);
+		
+		//De acordo com a universidade federal fluminense, são essas as áreas do conhecimento.
+		DefaultComboBoxModel<String> dcmArea = new DefaultComboBoxModel<String>();
+		dcmArea.addElement("Ciências Exatas e da Terra");
+		dcmArea.addElement("Ciências Biológicas");
+		dcmArea.addElement("Engenharia / Tecnologia");
+		dcmArea.addElement("Ciências da Saúde");
+		dcmArea.addElement("Ciências Agrárias");
+		dcmArea.addElement("Ciências Sociais");
+		dcmArea.addElement("Ciências Humanas");
+		dcmArea.addElement("Linguística");
+		dcmArea.addElement("Letras e Artes");
+		jcArea.setModel(dcmArea);
+		
+		
 		
 	}
 }
