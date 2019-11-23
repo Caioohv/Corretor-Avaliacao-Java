@@ -10,8 +10,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import conexao.Conn;
+import dataAcess.DAOCursos;
 import dataAcess.DAOGabarito;
+import dataAcess.DAOTurma;
 import modelo.Cartao;
+import modelo.Curso;
 import modelo.Gabarito;
 import modelo.Turma;
 import corretor.Main;
@@ -43,6 +46,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import java.awt.GridLayout;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class Principal extends JFrame {
 	private Gabarito novoGab;
@@ -106,6 +112,7 @@ public class Principal extends JFrame {
 			private JTextField textField;
 			private JTextField textField_1;
 			private JTextField textField_2;
+			private JTextField textField_3;
 
 	
 	public Principal() {
@@ -113,7 +120,7 @@ public class Principal extends JFrame {
 		//att//
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1099, 720);
+		setBounds(100, 100, 1099, 783);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -122,7 +129,7 @@ public class Principal extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(102, 51, 153));
-		panel.setBounds(0, 0, 322, 681);
+		panel.setBounds(0, 0, 322, 744);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -131,7 +138,7 @@ public class Principal extends JFrame {
 		lblOsk.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblOsk.setForeground(new Color(255,138,35));
 		lblOsk.setHorizontalAlignment(SwingConstants.CENTER);
-		lblOsk.setBounds(10, 33, 291, 64);
+		lblOsk.setBounds(10, 33, 302, 64);
 		lblOsk.setFont(new Font("The Bold Font", Font.PLAIN, 45));
 		panel.add(lblOsk);
 		
@@ -140,7 +147,7 @@ public class Principal extends JFrame {
 		lblCorretor.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCorretor.setForeground(new Color(255,138,35));
 		lblCorretor.setFont(new Font("The Bold Font", Font.PLAIN, 26));
-		lblCorretor.setBounds(10, 83, 291, 35);
+		lblCorretor.setBounds(10, 83, 302, 35);
 		panel.add(lblCorretor);
 		
 		JLabel lblCadastrarGabarito = new JLabel("Gabaritos");
@@ -149,7 +156,7 @@ public class Principal extends JFrame {
 		lblCadastrarGabarito.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCadastrarGabarito.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblCadastrarGabarito.setFont(new Font("Teko", Font.PLAIN, 28));
-		lblCadastrarGabarito.setBounds(10, 154, 291, 70);
+		lblCadastrarGabarito.setBounds(10, 154, 302, 70);
 		panel.add(lblCadastrarGabarito);
 		
 		JLabel lblEfetuarCorrees = new JLabel("Efetuar Corre\u00E7\u00F5es");
@@ -158,7 +165,7 @@ public class Principal extends JFrame {
 		lblEfetuarCorrees.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblEfetuarCorrees.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEfetuarCorrees.setFont(new Font("Teko", Font.PLAIN, 28));
-		lblEfetuarCorrees.setBounds(10, 235, 291, 70);
+		lblEfetuarCorrees.setBounds(10, 235, 302, 70);
 		panel.add(lblEfetuarCorrees);
 		
 		JLabel lblAlunos = new JLabel("Dados");
@@ -167,7 +174,7 @@ public class Principal extends JFrame {
 		lblAlunos.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblAlunos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlunos.setFont(new Font("Teko", Font.PLAIN, 28));
-		lblAlunos.setBounds(10, 316, 291, 70);
+		lblAlunos.setBounds(10, 316, 302, 70);
 		panel.add(lblAlunos);
 		
 		JLabel lblTurmas = new JLabel("Turmas");
@@ -176,16 +183,17 @@ public class Principal extends JFrame {
 		lblTurmas.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblTurmas.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTurmas.setFont(new Font("Teko", Font.PLAIN, 28));
-		lblTurmas.setBounds(10, 397, 291, 70);
+		lblTurmas.setBounds(10, 397, 302, 70);
 		panel.add(lblTurmas);
 		
 		JLabel lblAlunos_1 = new JLabel("Alunos");
+		
 		
 		lblAlunos_1.setForeground(new Color(255, 255, 204));
 		lblAlunos_1.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblAlunos_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlunos_1.setFont(new Font("Teko", Font.PLAIN, 28));
-		lblAlunos_1.setBounds(10, 478, 291, 70);
+		lblAlunos_1.setBounds(10, 478, 302, 70);
 		panel.add(lblAlunos_1);
 		
 		JLabel lblSair = new JLabel("Sair");
@@ -199,11 +207,20 @@ public class Principal extends JFrame {
 		lblSair.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSair.setForeground(new Color(255, 255, 204));
 		lblSair.setFont(new Font("Teko", Font.PLAIN, 28));
-		lblSair.setBounds(0, 600, 291, 70);
+		lblSair.setBounds(10, 663, 302, 70);
 		panel.add(lblSair);
 		
+		JLabel lblCursos = new JLabel("Cursos");
+		
+		lblCursos.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblCursos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCursos.setForeground(new Color(255, 255, 204));
+		lblCursos.setFont(new Font("Teko", Font.PLAIN, 28));
+		lblCursos.setBounds(10, 559, 302, 70);
+		panel.add(lblCursos);
+		
 		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(321, 0, 762, 681);
+		layeredPane.setBounds(321, 0, 762, 744);
 		contentPane.add(layeredPane);
 		layeredPane.setLayout(new CardLayout(0, 0));
 		
@@ -283,7 +300,9 @@ public class Principal extends JFrame {
 		gabarito.add(separator_1);
 		
 		Button btnContinuar = new Button("Continuar");
-		btnContinuar.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
+		btnContinuar.setBackground(new Color(102, 51, 153));
+		btnContinuar.setForeground(new Color(255, 255, 204));
+		btnContinuar.setFont(new Font("Teko", Font.BOLD, 20));
 		btnContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int aa = JOptionPane.showConfirmDialog(null, "Informações:\nAno: "+jcAno.getSelectedItem()+"\nEtapa: "+jcEtapa.getSelectedItem()+"\nTipo: "+jcTipo.getSelectedItem());
@@ -301,7 +320,7 @@ public class Principal extends JFrame {
 				//criaGabarito
 			}
 		});
-		btnContinuar.setBounds(617, 613, 135, 58);
+		btnContinuar.setBounds(617, 676, 135, 58);
 		gabarito.add(btnContinuar);
 		
 		JComboBox jcArea = new JComboBox();
@@ -365,38 +384,32 @@ public class Principal extends JFrame {
 		turmas.add(textField_2);
 		
 		Button button_1 = new Button("Cadastrar");
+		button_1.setForeground(new Color(255, 255, 204));
+		button_1.setBackground(new Color(102, 51, 153));
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		button_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Turma t = new Turma(textField.getText(), textField_2.getText(), Integer.parseInt(textField_1.getText()));
-				try {
-					 PreparedStatement ps = Conn.connect().prepareStatement("insert into turmas(id_turma, curso,  ano) values (?,?,?);");
-					 System.out.println("foi");
-					 ps.setString(1, t.getId_turma());
-					 ps.setString(2, t.getCurso());
-					 ps.setInt(3, t.getAno());
-					 ps.executeUpdate();
-					 
-					 int xesque=ps.executeUpdate();
-					 if(xesque == 1) {
-						 JOptionPane.showMessageDialog(null, "Turma Cadastrada!");
-						 layeredPane.removeAll();
-						 layeredPane.add(home);
-						 layeredPane.repaint();
-						 layeredPane.revalidate();
-					 }else if(xesque ==0) {
-						 JOptionPane.showMessageDialog(null, "Erro no cadastro!");
-					 }
-					 
-				 }catch (Exception x) {
-					// TODO: handle exception
-					 System.out.println(x);
+				Turma t = new Turma(textField.getText().toUpperCase(), textField_2.getText().toUpperCase(), Integer.parseInt(textField_1.getText()));
+				int i = DAOTurma.insert(t);
+				System.out.println(i);
+				if(i == 1) {
+					 JOptionPane.showMessageDialog(null, "Turma Cadastrada!");
+					 layeredPane.removeAll();
+					 layeredPane.add(home);
+					 layeredPane.repaint();
+					 layeredPane.revalidate();
+				 }else {
+					 JOptionPane.showMessageDialog(null, "Erro no cadastro!");
 				 }
 			}
 			
 		});
-		button_1.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
-		button_1.setBounds(617, 613, 135, 58);
+		button_1.setFont(new Font("Teko", Font.BOLD, 20));
+		button_1.setBounds(617, 676, 135, 58);
 		turmas.add(button_1);
 		
 		alunos = new JPanel();
@@ -426,6 +439,7 @@ public class Principal extends JFrame {
 		dados.add(lblDados);
 		
 		correcao = new JPanel();
+		correcao.setBorder(new EmptyBorder(0, 0, 0, 0));
 		correcao.setBackground(Color.WHITE);
 		layeredPane.add(correcao, "name_11103731559500");
 		correcao.setLayout(null);
@@ -483,8 +497,11 @@ public class Principal extends JFrame {
 		correcao.add(jcAreaCad);
 		
 		Button button = new Button("Continuar");
+		button.setFont(new Font("Teko", Font.PLAIN, 20));
+		button.setBackground(new Color(102, 51, 153));
+		button.setForeground(new Color(255, 255, 204));
 		
-		button.setBounds(639, 640, 113, 31);
+		button.setBounds(635, 690, 117, 44);
 		correcao.add(button);
 		
 		JPanel posCorrecao = new JPanel();
@@ -1223,6 +1240,9 @@ public class Principal extends JFrame {
 		criaGabarito.add(label_19);
 		
 		Button btnGerarGabarito = new Button("Criar");
+		btnGerarGabarito.setFont(new Font("Teko", Font.PLAIN, 18));
+		btnGerarGabarito.setBackground(new Color(102, 51, 153));
+		btnGerarGabarito.setForeground(new Color(255, 255, 204));
 		btnGerarGabarito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				resps = "";
@@ -1523,7 +1543,7 @@ public class Principal extends JFrame {
 				
 			}
 		});
-		btnGerarGabarito.setBounds(293, 562, 151, 34);
+		btnGerarGabarito.setBounds(601, 700, 151, 34);
 		criaGabarito.add(btnGerarGabarito);
 		
 		javax.swing.table.TableColumn tc = new javax.swing.table.TableColumn();
@@ -1681,26 +1701,7 @@ public class Principal extends JFrame {
 			}
 		});
 		
-		lblAlunos_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				lblEfetuarCorrees.setForeground(new Color(255, 255, 204));
-				lblAlunos.setForeground(new Color(255, 255, 204));
-				lblAlunos_1.setForeground(new Color(255,138,35));
-				lblCadastrarGabarito.setForeground(new Color(255, 255, 204));
-				lblCorretor.setForeground(new Color(255, 255, 204));				
-				lblTurmas.setForeground(new Color(255, 255, 204));
-				lblGabaritos.setForeground(new Color(255, 255, 204));
-				lblOsk.setForeground(new Color(255, 255, 204));
-				lblSair.setForeground(new Color(255, 255, 204));
-				
-				layeredPane.removeAll();
-				layeredPane.add(alunos);
-				layeredPane.repaint();
-				layeredPane.revalidate();
-				
-			}
-		});
+		
 		//codigo na mao
 		DefaultComboBoxModel<Integer> dcm = new DefaultComboBoxModel<Integer>();
 		for(int i = 2020; i > 1900; i--) {
@@ -1736,6 +1737,73 @@ public class Principal extends JFrame {
 		dcmArea.addElement("Linguística");
 		dcmArea.addElement("Letras e Artes");
 		jcArea.setModel(dcmArea);
+		
+		JPanel cursos = new JPanel();
+		cursos.setBackground(Color.WHITE);
+		layeredPane.add(cursos, "name_93838794476600");
+		cursos.setLayout(null);
+		
+		JComboBox jcCursos = new JComboBox();
+		jcCursos.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				textField_3.setText(jcCursos.getSelectedItem().toString());
+			}
+		});
+		jcCursos.setBounds(251, 227, 260, 20);
+		cursos.add(jcCursos);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(251, 285, 260, 20);
+		cursos.add(textField_3);
+		textField_3.setColumns(10);
+		
+		JLabel lblCursos_1 = new JLabel("Cursos");
+		lblCursos_1.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblCursos_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCursos_1.setForeground(new Color(0, 0, 51));
+		lblCursos_1.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 30));
+		lblCursos_1.setBounds(10, 11, 742, 66);
+		cursos.add(lblCursos_1);
+		
+		Button button_2 = new Button("Inserir");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DAOCursos.insert(textField_3.getText());
+				DAOCursos.listar(jcCursos);
+			}
+		});
+		button_2.setForeground(new Color(255, 255, 204));
+		button_2.setFont(new Font("Teko", Font.PLAIN, 18));
+		button_2.setBackground(new Color(102, 51, 153));
+		button_2.setBounds(601, 700, 151, 34);
+		cursos.add(button_2);
+		
+		Button button_3 = new Button("Atualizar");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DAOCursos.update((Curso) jcCursos.getSelectedItem(), textField_3.getText());
+				DAOCursos.listar(jcCursos);
+			}
+		});
+		
+		button_3.setForeground(new Color(255, 255, 204));
+		button_3.setFont(new Font("Teko", Font.PLAIN, 18));
+		button_3.setBackground(new Color(102, 51, 153));
+		button_3.setBounds(445, 700, 151, 34);
+		cursos.add(button_3);
+		
+		Button button_4 = new Button("Deletar");
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				DAOCursos.delete((Curso) jcCursos.getSelectedItem());
+				DAOCursos.listar(jcCursos);
+			}
+		});
+		button_4.setForeground(new Color(255, 0, 0));
+		button_4.setFont(new Font("Teko", Font.PLAIN, 18));
+		button_4.setBackground(new Color(102, 51, 153));
+		button_4.setBounds(288, 700, 151, 34);
+		cursos.add(button_4);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ArrayList<Cartao> ar = new ArrayList<Cartao>();
@@ -1763,7 +1831,38 @@ public class Principal extends JFrame {
 				}
 			}
 		});
-		
+		lblAlunos_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				lblEfetuarCorrees.setForeground(new Color(255, 255, 204));
+				lblAlunos.setForeground(new Color(255, 255, 204));
+				lblAlunos_1.setForeground(new Color(255,138,35));
+				lblCadastrarGabarito.setForeground(new Color(255, 255, 204));
+				lblCorretor.setForeground(new Color(255, 255, 204));				
+				lblTurmas.setForeground(new Color(255, 255, 204));
+				lblGabaritos.setForeground(new Color(255, 255, 204));
+				lblOsk.setForeground(new Color(255, 255, 204));
+				lblSair.setForeground(new Color(255, 255, 204));
+				
+				layeredPane.removeAll();
+				layeredPane.add(alunos);
+				layeredPane.repaint();
+				layeredPane.revalidate();
+			}
+		});
+		lblCursos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				DAOCursos.listar(jcCursos);
+				
+				layeredPane.removeAll();
+				layeredPane.add(cursos);
+				layeredPane.repaint();
+				layeredPane.revalidate();
+				
+				
+			}
+		});
 		
 	}
 }
