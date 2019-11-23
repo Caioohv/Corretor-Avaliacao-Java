@@ -46,7 +46,7 @@ public class Principal extends JFrame {
 	private JPanel gabaritos;
 	private JPanel correcao;
 	private JPanel dados;
-	private JPanel cursos;
+	private JPanel turmas;
 	private JPanel alunos;
 	private JPanel criaGabarito;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -163,14 +163,14 @@ public class Principal extends JFrame {
 		lblAlunos.setBounds(10, 316, 291, 70);
 		panel.add(lblAlunos);
 		
-		JLabel lblCursos = new JLabel("Cursos");
+		JLabel lblTurmas = new JLabel("Turmas");
 		
-		lblCursos.setForeground(new Color(255, 255, 204));
-		lblCursos.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblCursos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCursos.setFont(new Font("Teko", Font.PLAIN, 28));
-		lblCursos.setBounds(10, 397, 291, 70);
-		panel.add(lblCursos);
+		lblTurmas.setForeground(new Color(255, 255, 204));
+		lblTurmas.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblTurmas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTurmas.setFont(new Font("Teko", Font.PLAIN, 28));
+		lblTurmas.setBounds(10, 397, 291, 70);
+		panel.add(lblTurmas);
 		
 		JLabel lblAlunos_1 = new JLabel("Alunos");
 		
@@ -182,6 +182,12 @@ public class Principal extends JFrame {
 		panel.add(lblAlunos_1);
 		
 		JLabel lblSair = new JLabel("Sair");
+		lblSair.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+		});
 		lblSair.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblSair.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSair.setForeground(new Color(255, 255, 204));
@@ -301,18 +307,18 @@ public class Principal extends JFrame {
 		lblrea.setBounds(10, 431, 742, 31);
 		gabarito.add(lblrea);
 		
-		cursos = new JPanel();
-		cursos.setBackground(Color.WHITE);
-		layeredPane.add(cursos, "name_11025611987200");
-		cursos.setLayout(null);
+		turmas = new JPanel();
+		turmas.setBackground(Color.WHITE);
+		layeredPane.add(turmas, "name_11025611987200");
+		turmas.setLayout(null);
 		
-		JLabel lblCursos_1 = new JLabel("Cursos\r\n");
-		lblCursos_1.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblCursos_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCursos_1.setForeground(new Color(0, 0, 51));
-		lblCursos_1.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 30));
-		lblCursos_1.setBounds(10, 11, 742, 66);
-		cursos.add(lblCursos_1);
+		JLabel lblTurmas_1 = new JLabel("Turmas");
+		lblTurmas_1.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblTurmas_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTurmas_1.setForeground(new Color(0, 0, 51));
+		lblTurmas_1.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 30));
+		lblTurmas_1.setBounds(10, 11, 742, 66);
+		turmas.add(lblTurmas_1);
 		
 		alunos = new JPanel();
 		alunos.setBackground(Color.WHITE);
@@ -1454,10 +1460,15 @@ public class Principal extends JFrame {
 				lblAlunos_1.setForeground(new Color(255, 255, 204));
 				lblCadastrarGabarito.setForeground(new Color(255, 255, 204));
 				lblCorretor.setForeground(new Color(255,138,35));
-				lblCursos.setForeground(new Color(255, 255, 204));
+				lblTurmas.setForeground(new Color(255, 255, 204));
 				lblGabaritos.setForeground(new Color(255, 255, 204));
 				lblOsk.setForeground(new Color(255,138,35));
 				lblSair.setForeground(new Color(255, 255, 204));
+				
+				layeredPane.removeAll();
+				layeredPane.add(home);
+				layeredPane.repaint();
+				layeredPane.revalidate();
 			}
 		});
 		
@@ -1470,10 +1481,15 @@ public class Principal extends JFrame {
 				lblAlunos_1.setForeground(new Color(255, 255, 204));
 				lblCadastrarGabarito.setForeground(new Color(255, 255, 204));
 				lblCorretor.setForeground(new Color(255, 255, 204));
-				lblCursos.setForeground(new Color(255, 255, 204));
+				lblTurmas.setForeground(new Color(255, 255, 204));
 				lblGabaritos.setForeground(new Color(255, 255, 204));
 				lblOsk.setForeground(new Color(255, 255, 204));
 				lblSair.setForeground(new Color(255, 255, 204));
+				
+				layeredPane.removeAll();
+				layeredPane.add(correcao);
+				layeredPane.repaint();
+				layeredPane.revalidate();
 				
 				DefaultComboBoxModel<Integer> dcm = new DefaultComboBoxModel<Integer>();
 				for(int i = 2020; i > 1900; i--) {
@@ -1530,7 +1546,7 @@ public class Principal extends JFrame {
 				lblAlunos_1.setForeground(new Color(255, 255, 204));
 				lblCadastrarGabarito.setForeground(new Color(255,138,35));
 				lblCorretor.setForeground(new Color(255, 255, 204));
-				lblCursos.setForeground(new Color(255, 255, 204));
+				lblTurmas.setForeground(new Color(255, 255, 204));
 				lblGabaritos.setForeground(new Color(255, 255, 204));
 				lblOsk.setForeground(new Color(255, 255, 204));
 				lblSair.setForeground(new Color(255, 255, 204));
@@ -1552,14 +1568,20 @@ public class Principal extends JFrame {
 				lblAlunos_1.setForeground(new Color(255, 255, 204));
 				lblCadastrarGabarito.setForeground(new Color(255, 255, 204));
 				lblCorretor.setForeground(new Color(255, 255, 204));				
-				lblCursos.setForeground(new Color(255, 255, 204));
+				lblTurmas.setForeground(new Color(255, 255, 204));
 				lblGabaritos.setForeground(new Color(255, 255, 204));
 				lblOsk.setForeground(new Color(255, 255, 204));
 				lblSair.setForeground(new Color(255, 255, 204));
+				
+				layeredPane.removeAll();
+				layeredPane.add(dados);
+				layeredPane.repaint();
+				layeredPane.revalidate();
+				
 			}
 		});
 		
-		lblCursos.addMouseListener(new MouseAdapter() {
+		lblTurmas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				lblEfetuarCorrees.setForeground(new Color(255, 255, 204));
@@ -1567,10 +1589,16 @@ public class Principal extends JFrame {
 				lblAlunos_1.setForeground(new Color(255, 255, 204));
 				lblCadastrarGabarito.setForeground(new Color(255, 255, 204));
 				lblCorretor.setForeground(new Color(255, 255, 204));				
-				lblCursos.setForeground(new Color(255,138,35));
+				lblTurmas.setForeground(new Color(255,138,35));
 				lblGabaritos.setForeground(new Color(255, 255, 204));
 				lblOsk.setForeground(new Color(255, 255, 204));
 				lblSair.setForeground(new Color(255, 255, 204));
+				
+				layeredPane.removeAll();
+				layeredPane.add(turmas);
+				layeredPane.repaint();
+				layeredPane.revalidate();
+				
 			}
 		});
 		
@@ -1582,10 +1610,16 @@ public class Principal extends JFrame {
 				lblAlunos_1.setForeground(new Color(255,138,35));
 				lblCadastrarGabarito.setForeground(new Color(255, 255, 204));
 				lblCorretor.setForeground(new Color(255, 255, 204));				
-				lblCursos.setForeground(new Color(255, 255, 204));
+				lblTurmas.setForeground(new Color(255, 255, 204));
 				lblGabaritos.setForeground(new Color(255, 255, 204));
 				lblOsk.setForeground(new Color(255, 255, 204));
 				lblSair.setForeground(new Color(255, 255, 204));
+				
+				layeredPane.removeAll();
+				layeredPane.add(alunos);
+				layeredPane.repaint();
+				layeredPane.revalidate();
+				
 			}
 		});
 		//codigo na mao
