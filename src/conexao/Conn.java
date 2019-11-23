@@ -57,10 +57,16 @@ public class Conn {
             } catch(ClassNotFoundException ex){
                 return null;
             }
-
-
+            
+            int loló = 1;
             String usuario = "postgres";
-            String senha = "root";
+            String senha = null;
+            if(loló == 0) {
+            	senha = "root";
+            }else if(loló == 1) {
+            	senha = "xesquedele";
+            }
+            
             //String banco = "jdbc:postgresql://200.18.128.54/caiohvieira";
             String banco = "jdbc:postgresql://localhost/corretor";
             try{

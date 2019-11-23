@@ -9,9 +9,11 @@ import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import conexao.Conn;
 import dataAcess.DAOGabarito;
 import modelo.Cartao;
 import modelo.Gabarito;
+import modelo.Turma;
 import corretor.Main;
 
 import java.awt.Color;
@@ -28,6 +30,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.awt.Dimension;
 import javax.swing.JButton;
@@ -39,6 +42,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 public class Principal extends JFrame {
 	private Gabarito novoGab;
@@ -99,6 +103,9 @@ public class Principal extends JFrame {
 			DefaultComboBoxModel<Character> dcm2;
 			DefaultComboBoxModel<Integer> dcm3;
 			private JTable jtCorrecao;
+			private JTextField textField;
+			private JTextField textField_1;
+			private JTextField textField_2;
 
 	
 	public Principal() {
@@ -276,6 +283,7 @@ public class Principal extends JFrame {
 		gabarito.add(separator_1);
 		
 		Button btnContinuar = new Button("Continuar");
+		btnContinuar.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
 		btnContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int aa = JOptionPane.showConfirmDialog(null, "Informações:\nAno: "+jcAno.getSelectedItem()+"\nEtapa: "+jcEtapa.getSelectedItem()+"\nTipo: "+jcTipo.getSelectedItem());
@@ -293,7 +301,7 @@ public class Principal extends JFrame {
 				//criaGabarito
 			}
 		});
-		btnContinuar.setBounds(639, 640, 113, 31);
+		btnContinuar.setBounds(617, 613, 135, 58);
 		gabarito.add(btnContinuar);
 		
 		JComboBox jcArea = new JComboBox();
@@ -319,6 +327,77 @@ public class Principal extends JFrame {
 		lblTurmas_1.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 30));
 		lblTurmas_1.setBounds(10, 11, 742, 66);
 		turmas.add(lblTurmas_1);
+		
+		JLabel lblCdigoDoCurso = new JLabel("C\u00F3digo do Curso:");
+		lblCdigoDoCurso.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCdigoDoCurso.setForeground(new Color(51, 51, 51));
+		lblCdigoDoCurso.setFont(new Font("Dialog", Font.PLAIN, 24));
+		lblCdigoDoCurso.setBounds(10, 229, 742, 32);
+		turmas.add(lblCdigoDoCurso);
+		
+		textField = new JTextField();
+		textField.setBounds(10, 272, 742, 32);
+		turmas.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblAno_1 = new JLabel("Ano:");
+		lblAno_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAno_1.setForeground(new Color(51, 51, 51));
+		lblAno_1.setFont(new Font("Dialog", Font.PLAIN, 24));
+		lblAno_1.setBounds(10, 315, 742, 32);
+		turmas.add(lblAno_1);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(10, 358, 742, 32);
+		turmas.add(textField_1);
+		
+		JLabel lblCurso = new JLabel("Curso:");
+		lblCurso.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCurso.setForeground(new Color(51, 51, 51));
+		lblCurso.setFont(new Font("Dialog", Font.PLAIN, 24));
+		lblCurso.setBounds(10, 401, 742, 32);
+		turmas.add(lblCurso);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(10, 444, 742, 32);
+		turmas.add(textField_2);
+		
+		Button button_1 = new Button("Cadastrar");
+		button_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Turma t = new Turma(textField.getText(), textField_2.getText(), Integer.parseInt(textField_1.getText()));
+				try {
+					 PreparedStatement ps = Conn.connect().prepareStatement("insert into turmas(id_turma, curso,  ano) values (?,?,?);");
+					 System.out.println("foi");
+					 ps.setString(1, t.getId_turma());
+					 ps.setString(2, t.getCurso());
+					 ps.setInt(3, t.getAno());
+					 ps.executeUpdate();
+					 
+					 int xesque=ps.executeUpdate();
+					 if(xesque == 1) {
+						 JOptionPane.showMessageDialog(null, "Turma Cadastrada!");
+						 layeredPane.removeAll();
+						 layeredPane.add(home);
+						 layeredPane.repaint();
+						 layeredPane.revalidate();
+					 }else if(xesque ==0) {
+						 JOptionPane.showMessageDialog(null, "Erro no cadastro!");
+					 }
+					 
+				 }catch (Exception x) {
+					// TODO: handle exception
+					 System.out.println(x);
+				 }
+			}
+			
+		});
+		button_1.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
+		button_1.setBounds(617, 613, 135, 58);
+		turmas.add(button_1);
 		
 		alunos = new JPanel();
 		alunos.setBackground(Color.WHITE);
