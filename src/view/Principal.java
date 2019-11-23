@@ -10,7 +10,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import dataAcess.DAOGabarito;
-import javafx.scene.control.TableColumn;
 import modelo.Cartao;
 import modelo.Gabarito;
 import corretor.Main;

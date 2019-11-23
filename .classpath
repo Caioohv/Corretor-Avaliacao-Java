@@ -4,6 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/OpenCV/opencv/build/java/opencv-412.jar"/>
 	<classpathentry kind="lib" path="C:/OpenCV/opencv/build/java/x64"/>
-	<classpathentry kind="lib" path="C:/Users/DjHvBeat/eclipse-workspace/AAAA/sources/Jars/rs2xml.jar"/>
+	<classpathentry kind="lib" path="C:/Users/calbe/Desktop/Estudos/Prog/Jar/rs2xml.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
