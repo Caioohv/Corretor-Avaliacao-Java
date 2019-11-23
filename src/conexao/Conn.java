@@ -18,21 +18,16 @@ public class Conn {
     public static Connection connect(){
         int opc =  1      ;
         // 0 = server local 10.0.0.0    -   Janio / IFMG
-        // 1 = server local 127.0.0.1   -   Meu / Local
+        // 1 = server local 127.0.0.1   -   Caio
         // 2 = server externo           -   Janio / IFMG
+        // 3 = Sercer local 127.0.0.1   -   Carlos
         if(opc == 0){
-            
-            
-            
             //Para ConexÃ£o do BD Oficial
-            
             try{
                 Class.forName("org.postgresql.Driver");
             } catch(ClassNotFoundException ex){
                 return null;
             }
-
-
             String usuario = "correcaocartao";
             String senha = "correcaocartao";
             //String banco = "jdbc:postgresql://200.18.128.54/caiohvieira";
@@ -43,30 +38,16 @@ public class Conn {
                 System.out.println(ex.getMessage());
                 return null;
             }
-            
-            
-            
-            
-            
-            
             //Para teste local
-            
         }else if(opc == 1){
             try{
                 Class.forName("org.postgresql.Driver");
             } catch(ClassNotFoundException ex){
                 return null;
             }
-            
             int loló = 1;
             String usuario = "postgres";
-            String senha = null;
-            if(loló == 0) {
-            	senha = "root";
-            }else if(loló == 1) {
-            	senha = "xesquedele";
-            }
-            
+            String senha = "root";
             //String banco = "jdbc:postgresql://200.18.128.54/caiohvieira";
             String banco = "jdbc:postgresql://localhost/corretor";
             try{
@@ -95,7 +76,32 @@ public class Conn {
                 System.out.println(ex.getMessage());
                 
             }
+        }else if(opc == 3){
+            try{
+                Class.forName("org.postgresql.Driver");
+            } catch(ClassNotFoundException ex){
+                return null;
+            }
+            
+            int loló = 1;
+            String usuario = "postgres";
+            String senha = "Xesque";
+
+
+            
+            //String banco = "jdbc:postgresql://200.18.128.54/caiohvieira";
+            String banco = "jdbc:postgresql://localhost/corretor";
+            try{
+                Class.forName("org.postgresql.Driver");
+                System.out.println(" - - - - - - - CONEXÃO CRIADA - - - - - - - - - - -");
+                return DriverManager.getConnection(banco,usuario, senha);
+            } catch (Exception ex){
+                System.out.println(ex.getMessage());
+                return null;
+            }
         }
+        return null;
+    }
         return null;
     }
 }
