@@ -109,9 +109,7 @@ public class Principal extends JFrame {
 			DefaultComboBoxModel<Character> dcm2;
 			DefaultComboBoxModel<Integer> dcm3;
 			private JTable jtCorrecao;
-			private JTextField textField;
-			private JTextField textField_1;
-			private JTextField textField_2;
+			private JTextField jtCodTurma;
 			private JTextField textField_3;
 
 	
@@ -174,7 +172,7 @@ public class Principal extends JFrame {
 		lblAlunos.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblAlunos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlunos.setFont(new Font("Teko", Font.PLAIN, 28));
-		lblAlunos.setBounds(10, 316, 302, 70);
+		lblAlunos.setBounds(10, 559, 302, 70);
 		panel.add(lblAlunos);
 		
 		JLabel lblTurmas = new JLabel("Turmas");
@@ -183,7 +181,7 @@ public class Principal extends JFrame {
 		lblTurmas.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblTurmas.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTurmas.setFont(new Font("Teko", Font.PLAIN, 28));
-		lblTurmas.setBounds(10, 397, 302, 70);
+		lblTurmas.setBounds(10, 478, 302, 70);
 		panel.add(lblTurmas);
 		
 		JLabel lblAlunos_1 = new JLabel("Alunos");
@@ -193,7 +191,7 @@ public class Principal extends JFrame {
 		lblAlunos_1.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblAlunos_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlunos_1.setFont(new Font("Teko", Font.PLAIN, 28));
-		lblAlunos_1.setBounds(10, 478, 302, 70);
+		lblAlunos_1.setBounds(10, 316, 302, 70);
 		panel.add(lblAlunos_1);
 		
 		JLabel lblSair = new JLabel("Sair");
@@ -205,7 +203,7 @@ public class Principal extends JFrame {
 		});
 		lblSair.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblSair.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSair.setForeground(new Color(255, 255, 204));
+		lblSair.setForeground(new Color(255, 204, 153));
 		lblSair.setFont(new Font("Teko", Font.PLAIN, 28));
 		lblSair.setBounds(10, 663, 302, 70);
 		panel.add(lblSair);
@@ -216,7 +214,7 @@ public class Principal extends JFrame {
 		lblCursos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCursos.setForeground(new Color(255, 255, 204));
 		lblCursos.setFont(new Font("Teko", Font.PLAIN, 28));
-		lblCursos.setBounds(10, 559, 302, 70);
+		lblCursos.setBounds(10, 397, 302, 70);
 		panel.add(lblCursos);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
@@ -347,70 +345,69 @@ public class Principal extends JFrame {
 		lblTurmas_1.setBounds(10, 11, 742, 66);
 		turmas.add(lblTurmas_1);
 		
-		JLabel lblCdigoDoCurso = new JLabel("C\u00F3digo do Curso:");
+		JLabel lblCdigoDoCurso = new JLabel("C\u00F3digo da Turma:");
 		lblCdigoDoCurso.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCdigoDoCurso.setForeground(new Color(51, 51, 51));
-		lblCdigoDoCurso.setFont(new Font("Dialog", Font.PLAIN, 24));
-		lblCdigoDoCurso.setBounds(10, 229, 742, 32);
+		lblCdigoDoCurso.setFont(new Font("Teko", Font.PLAIN, 24));
+		lblCdigoDoCurso.setBounds(10, 195, 742, 32);
 		turmas.add(lblCdigoDoCurso);
 		
-		textField = new JTextField();
-		textField.setBounds(10, 272, 742, 32);
-		turmas.add(textField);
-		textField.setColumns(10);
+		jtCodTurma = new JTextField();
+		jtCodTurma.setBounds(252, 272, 260, 32);
+		turmas.add(jtCodTurma);
+		jtCodTurma.setColumns(10);
 		
 		JLabel lblAno_1 = new JLabel("Ano:");
 		lblAno_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAno_1.setForeground(new Color(51, 51, 51));
-		lblAno_1.setFont(new Font("Dialog", Font.PLAIN, 24));
+		lblAno_1.setFont(new Font("Teko", Font.PLAIN, 24));
 		lblAno_1.setBounds(10, 315, 742, 32);
 		turmas.add(lblAno_1);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(10, 358, 742, 32);
-		turmas.add(textField_1);
 		
 		JLabel lblCurso = new JLabel("Curso:");
 		lblCurso.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCurso.setForeground(new Color(51, 51, 51));
-		lblCurso.setFont(new Font("Dialog", Font.PLAIN, 24));
+		lblCurso.setFont(new Font("Teko", Font.PLAIN, 24));
 		lblCurso.setBounds(10, 401, 742, 32);
 		turmas.add(lblCurso);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(10, 444, 742, 32);
-		turmas.add(textField_2);
-		
 		Button button_1 = new Button("Cadastrar");
+		button_1.setActionCommand("Inserir");
 		button_1.setForeground(new Color(255, 255, 204));
 		button_1.setBackground(new Color(102, 51, 153));
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		button_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Turma t = new Turma(textField.getText().toUpperCase(), textField_2.getText().toUpperCase(), Integer.parseInt(textField_1.getText()));
-				int i = DAOTurma.insert(t);
-				System.out.println(i);
-				if(i == 1) {
-					 JOptionPane.showMessageDialog(null, "Turma Cadastrada!");
-					 layeredPane.removeAll();
-					 layeredPane.add(home);
-					 layeredPane.repaint();
-					 layeredPane.revalidate();
-				 }else {
-					 JOptionPane.showMessageDialog(null, "Erro no cadastro!");
-				 }
-			}
-			
-		});
+		
+		
 		button_1.setFont(new Font("Teko", Font.BOLD, 20));
 		button_1.setBounds(617, 676, 135, 58);
 		turmas.add(button_1);
+		
+		JComboBox jcCursoTurmas = new JComboBox();
+		jcCursoTurmas.setBounds(252, 444, 260, 20);
+		turmas.add(jcCursoTurmas);
+		
+		JComboBox jcAnoTurmas = new JComboBox();
+		jcAnoTurmas.setBounds(252, 358, 260, 20);
+		turmas.add(jcAnoTurmas);
+		
+		Button button_5 = new Button("Cadastrar");
+		button_5.setActionCommand("Atualizar");
+		button_5.setForeground(new Color(255, 255, 204));
+		button_5.setFont(new Font("Teko", Font.BOLD, 20));
+		button_5.setBackground(new Color(102, 51, 153));
+		button_5.setBounds(476, 676, 135, 58);
+		turmas.add(button_5);
+		
+		Button button_6 = new Button("Excluir");
+		button_6.setActionCommand("Deletar");
+		button_6.setForeground(new Color(255, 51, 0));
+		button_6.setFont(new Font("Teko", Font.BOLD, 20));
+		button_6.setBackground(new Color(102, 51, 153));
+		button_6.setBounds(335, 676, 135, 58);
+		turmas.add(button_6);
+		
+		JComboBox jcCodTurma = new JComboBox();
+		jcCodTurma.setBounds(252, 238, 260, 20);
+		turmas.add(jcCodTurma);
 		
 		alunos = new JPanel();
 		alunos.setBackground(Color.WHITE);
@@ -1680,26 +1677,7 @@ public class Principal extends JFrame {
 			}
 		});
 		
-		lblTurmas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				lblEfetuarCorrees.setForeground(new Color(255, 255, 204));
-				lblAlunos.setForeground(new Color(255, 255, 204));
-				lblAlunos_1.setForeground(new Color(255, 255, 204));
-				lblCadastrarGabarito.setForeground(new Color(255, 255, 204));
-				lblCorretor.setForeground(new Color(255, 255, 204));				
-				lblTurmas.setForeground(new Color(255,138,35));
-				lblGabaritos.setForeground(new Color(255, 255, 204));
-				lblOsk.setForeground(new Color(255, 255, 204));
-				lblSair.setForeground(new Color(255, 255, 204));
-				
-				layeredPane.removeAll();
-				layeredPane.add(turmas);
-				layeredPane.repaint();
-				layeredPane.revalidate();
-				
-			}
-		});
+		
 		
 		
 		//codigo na mao
@@ -1768,7 +1746,7 @@ public class Principal extends JFrame {
 		Button button_2 = new Button("Inserir");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DAOCursos.insert(textField_3.getText());
+				DAOCursos.insert(textField_3.getText().toUpperCase());
 				DAOCursos.listar(jcCursos);
 			}
 		});
@@ -1781,7 +1759,7 @@ public class Principal extends JFrame {
 		Button button_3 = new Button("Atualizar");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DAOCursos.update((Curso) jcCursos.getSelectedItem(), textField_3.getText());
+				DAOCursos.update((Curso) jcCursos.getSelectedItem(), textField_3.getText().toUpperCase());
 				DAOCursos.listar(jcCursos);
 			}
 		});
@@ -1853,6 +1831,18 @@ public class Principal extends JFrame {
 		lblCursos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				lblEfetuarCorrees.setForeground(new Color(255, 255, 204));
+				lblAlunos.setForeground(new Color(255, 255, 204));
+				lblAlunos_1.setForeground(new Color(255, 255, 204));
+				lblCadastrarGabarito.setForeground(new Color(255, 255, 204));
+				lblCorretor.setForeground(new Color(255, 255, 204));				
+				lblTurmas.setForeground(new Color(255, 255, 204));
+				lblGabaritos.setForeground(new Color(255, 255, 204));
+				lblOsk.setForeground(new Color(255, 255, 204));
+				lblSair.setForeground(new Color(255, 255, 204));
+				lblCursos.setForeground(new Color(255,138,35));
+				
+				
 				DAOCursos.listar(jcCursos);
 				
 				layeredPane.removeAll();
@@ -1860,6 +1850,72 @@ public class Principal extends JFrame {
 				layeredPane.repaint();
 				layeredPane.revalidate();
 				
+				
+			}
+		});
+		button_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Turma t = new Turma(jtCodTurma.getText().toUpperCase(), jcCursoTurmas.getSelectedItem().toString().toUpperCase(), Integer.parseInt(String.valueOf(jcAnoTurmas.getSelectedItem())));
+				int i = DAOTurma.insert(t);
+				System.out.println(i);
+				if(i == 1) {
+					 JOptionPane.showMessageDialog(null, "Turma Cadastrada!");
+					 
+				 }else {
+					 JOptionPane.showMessageDialog(null, "Erro no cadastro!");
+				 }
+			}
+			
+		});
+		lblTurmas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				lblEfetuarCorrees.setForeground(new Color(255, 255, 204));
+				lblAlunos.setForeground(new Color(255, 255, 204));
+				lblAlunos_1.setForeground(new Color(255, 255, 204));
+				lblCadastrarGabarito.setForeground(new Color(255, 255, 204));
+				lblCorretor.setForeground(new Color(255, 255, 204));				
+				lblTurmas.setForeground(new Color(255,138,35));
+				lblGabaritos.setForeground(new Color(255, 255, 204));
+				lblOsk.setForeground(new Color(255, 255, 204));
+				lblSair.setForeground(new Color(255, 255, 204));
+				
+				DefaultComboBoxModel<Integer> dcmt = new DefaultComboBoxModel<Integer>();
+				for(int i = 2020; i > 1900; i--) {
+					dcmt.addElement(i);
+					
+				}
+				jcAnoTurmas.setModel(dcmt);
+				
+				DAOCursos.listar(jcCursoTurmas);
+				
+				DAOTurma.listar(jcCodTurma);
+				
+				layeredPane.removeAll();
+				layeredPane.add(turmas);
+				layeredPane.repaint();
+				layeredPane.revalidate();
+				
+			}
+		});
+		
+		jcCodTurma.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				Turma t = (Turma) jcCodTurma.getSelectedItem();
+				//jcCursoTurmas.set
+				jcCursoTurmas.setSelectedItem(t.getCurso());
+				jcAno.setSelectedItem(t.getAno());
+			}
+		});
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Turma t = new Turma(jtCodTurma.getText().toUpperCase(), jcCursoTurmas.getSelectedItem().toString(), Integer.parseInt(jcAnoTurmas.getSelectedItem().toString()));
+				
+				DAOTurma.insert(t);
+				
+				DAOTurma.listar(jcCodTurma);
 				
 			}
 		});

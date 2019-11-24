@@ -34,5 +34,11 @@ public class Turma {
 	public void setAno(int ano) {
 		this.ano = ano;
 	}
+
+	@Override
+	public String toString() {
+		return id_turma;
+	}
+	
 	
 }

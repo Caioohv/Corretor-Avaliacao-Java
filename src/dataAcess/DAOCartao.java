@@ -10,6 +10,19 @@ import conexao.Conn;
 import net.proteanit.sql.DbUtils;
 
 public class DAOCartao {
+	
+	/*
+	 * create table cartoes(
+	 * id serial primary key,
+	 * resps varchar(20),
+	 * ano int,
+	 * etapa int,
+	 * area varchar(25),
+	 * tipo char(1),
+	 * aluno_ra varchar(10) references aluno(ra),
+	 * resultado float
+	 * );
+	 */
 	@SuppressWarnings("finally")
 	public static TableModel selectModel() {
 		TableModel model = null;
@@ -26,6 +39,9 @@ public class DAOCartao {
 		}
 			
 			
+	}
+	public static int insert() {
+		
 	}
 	
 }
