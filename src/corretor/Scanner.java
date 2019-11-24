@@ -69,15 +69,15 @@ public class Scanner {
 
         recognizeAnswers();
 
-        sout("*************************************");
-        sout("*************************************");
-        sout("answer is ....");
-        sout("*************************************");
-        sout("*************************************");
+        //sout("*************************************");
+        //sout("*************************************");
+       // sout("answer is ....");
+        //sout("*************************************");
+        //sout("*************************************");
 
         for(int index = 0; index < answers.size(); index++){
             Integer optionIndex = answers.get(index);
-            sout((index + 1) + ". " + (optionIndex == null ? "y" : options[optionIndex]));
+            //sout((index + 1) + ". " + (optionIndex == null ? "y" : options[optionIndex]));
         }
 
         write2File(source, "result.png");
@@ -114,15 +114,15 @@ public class Scanner {
 
         recognizeAnswers();
 
-        sout("*************************************");
-        sout("*************************************");
-        sout("answer is ....");
-        sout("*************************************");
-        sout("*************************************");
+        //sout("*************************************");
+        //sout("*************************************");
+       // sout("answer is ....");
+        //sout("*************************************");
+        //sout("*************************************");
         ArrayList<String> ar = new ArrayList<String>();
         for(int index = 0; index < answers.size(); index++){
             Integer optionIndex = answers.get(index);
-            sout((index + 1) + ". " + (optionIndex == null ? "y" : options[optionIndex]));
+            //sout((index + 1) + ". " + (optionIndex == null ? "y" : options[optionIndex]));
             ar.add((optionIndex == null ? "y" : options[optionIndex]));
         }
 
@@ -133,7 +133,7 @@ public class Scanner {
 
         findContours(adaptiveThresh.clone(), contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
 
-        if(logging) sout("getParentRectangle > hiearchy data:\n" + hierarchy.dump());
+        //if(logging) sout("getParentRectangle > hiearchy data:\n" + hierarchy.dump());
 
         // find rectangles
         HashMap<Double, MatOfPoint> rectangles = new HashMap<>();
@@ -146,8 +146,8 @@ public class Scanner {
             }
         }
 
-        if(logging) sout("getParentRectangle > contours.size: " + contours.size());
-        if(logging) sout("getParentRectangle > rectangles.size: " + rectangles.size());
+        //if(logging) sout("getParentRectangle > contours.size: " + contours.size());
+        //if(logging) sout("getParentRectangle > rectangles.size: " + rectangles.size());
 
         int parentIndex = -1;
 
@@ -176,10 +176,10 @@ public class Scanner {
                 parentIndex = (int) index;
             }
 
-            if(logging) sout("getParentRectangle > index: " + index + ", c: " + c);
+            //if(logging) sout("getParentRectangle > index: " + index + ", c: " + c);
         }
 
-        if(logging) sout("getParentRectangle > parentIndex: " + parentIndex);
+        //if(logging) sout("getParentRectangle > parentIndex: " + parentIndex);
 
         if(parentIndex < 0){
             throw new Exception("Couldn't capture main wrapper");
@@ -187,8 +187,8 @@ public class Scanner {
 
         roi = boundingRect(contours.get(parentIndex));
 
-        if(logging) sout("getParentRectangle > original roi.x: " + roi.x + ", roi.y: " + roi.y);
-        if(logging) sout("getParentRectangle > original roi.width: " + roi.width + ", roi.height: " + roi.height);
+        //if(logging) sout("getParentRectangle > original roi.x: " + roi.x + ", roi.y: " + roi.y);
+        //if(logging) sout("getParentRectangle > original roi.width: " + roi.width + ", roi.height: " + roi.height);
 
         int padding = 30;
 
@@ -197,10 +197,10 @@ public class Scanner {
         roi.width -= 2 * padding;
         roi.height -= 2 * padding;
 
-        if(logging) sout("getParentRectangle > modified roi.x: " + roi.x + ", roi.y: " + roi.y);
-        if(logging) sout("getParentRectangle > modified roi.width: " + roi.width + ", roi.height: " + roi.height);
+        //if(logging) sout("getParentRectangle > modified roi.x: " + roi.x + ", roi.y: " + roi.y);
+        //if(logging) sout("getParentRectangle > modified roi.width: " + roi.width + ", roi.height: " + roi.height);
 
-        if(logging) write2File(source.submat(roi), "step_7_roi.png");
+        //if(logging) write2File(source.submat(roi), "step_7_roi.png");
     }
 
     private void findBubbles() throws Exception {
@@ -215,7 +215,7 @@ public class Scanner {
         double minThreshold = Math.floor(Math.min(_w, _h)) - threshold;
         double maxThreshold = Math.ceil(Math.max(_w, _h)) + threshold;
 
-        if(logging) sout("findBubbles > ideal circle size > minThreshold: " + minThreshold + ", maxThreshold: " + maxThreshold);
+        //if(logging) sout("findBubbles > ideal circle size > minThreshold: " + minThreshold + ", maxThreshold: " + maxThreshold);
 
         List<MatOfPoint> drafts = new ArrayList<>();
         for(MatOfPoint contour : contours){
@@ -225,7 +225,7 @@ public class Scanner {
             int h = _rect.height;
             double ratio = Math.max(w, h) / Math.min(w, h);
 
-            if(logging) sout("findBubbles > founded circle > w: " + w + ", h: " + h);
+            //if(logging) sout("findBubbles > founded circle > w: " + w + ", h: " + h);
 
             if(ratio >= 0.9 && ratio <= 1.1)
                 if(Math.max(w, h) < maxThreshold && Math.min(w, h) >= minThreshold){
@@ -233,7 +233,7 @@ public class Scanner {
                 }
         }
 
-        if(logging) sout("findBubbles > bubbles.size: " + drafts.size());
+        //if(logging) sout("findBubbles > bubbles.size: " + drafts.size());
 
         if(drafts.size() != questionCount * options.length){
             throw new Exception("Couldn't capture all bubbles.");
@@ -280,14 +280,14 @@ public class Scanner {
 
                 int countNonZero = Core.countNonZero(conjuction);
 
-                if(logging) sout("recognizeAnswers > " + i + ":" + j + " > countNonZero: " + countNonZero);
+                //if(logging) sout("recognizeAnswers > " + i + ":" + j + " > countNonZero: " + countNonZero);
 
                 filled[j] = new int[]{ countNonZero, i, j};
             }
 
             int[] selection = chooseFilledCircle(filled);
 
-            if(logging) sout("recognizeAnswers > selection is " + (selection == null ? "y" : selection[2]));
+           // if(logging) sout("recognizeAnswers > selection is " + (selection == null ? "y" : selection[2]));
 
             if(selection != null){
 

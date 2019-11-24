@@ -79,11 +79,12 @@ public class Main {
             for(String s1: a) {
             	resps = resps + s1;
             }
-            System.out.println(resps);
+            //System.out.println(resps);
             Cartao c = new Cartao();
             c.setAluno((JOptionPane.showInputDialog(null, "Qual o RA do aluno do arquivo "+s+" ?")));
+            //c.setAluno(I);
             c.setResps(resps);
-            
+            System.out.println(c);
             ar.add(c);
         }
         
@@ -156,7 +157,8 @@ public static ArrayList<String> getPaths() throws Exception {
 					+ "\n3 - CRUD aluno\n4 - CRUD turma\n5 - CRUD tabela alunos x notas\n6 - Sair"));
 			switch(a) {
 			case 1:
-				lerGabarito();
+				Gabarito ge = null;
+				lerGabarito( ge);
 				break;
 			case 2:
 				Gabarito g = new Gabarito(JOptionPane.showInputDialog("Gabarito:"), 
@@ -189,13 +191,13 @@ public static ArrayList<String> getPaths() throws Exception {
 
 	}
 	
-	public static void lerGabarito() throws Exception {
+	public static void lerGabarito(Gabarito g) throws Exception {
 		String resps; int ano = 2019; int etapa = 3;
 		int valorProva=10, qntquestoes=20;
 		
 		ArrayList<Cartao> valores = ler();
 		for(Cartao c: valores) {
-		cadastroGabarito.corretor.corrigir(c);
+		cadastroGabarito.corretor.corrigir(c, g);
 		}
 		
 		//Atribui nota
@@ -213,13 +215,15 @@ public static ArrayList<String> getPaths() throws Exception {
 			
 		}
 	}
-	public static ArrayList<Cartao> lerGabaritoR() throws Exception {
+	public static ArrayList<Cartao> lerGabaritoR(Gabarito g) throws Exception {
 		String resps; int ano = 2019; int etapa = 3;
-		int valorProva=10, qntquestoes=20;
+		double valorProva= Double.parseDouble(JOptionPane.showInputDialog(null, "Qual o valor da prova?\nPadrão: 10"));
+		int qntquestoes=20;
 		
 		ArrayList<Cartao> valores = ler();
 		for(Cartao c: valores) {
-		cadastroGabarito.corretor.corrigir(c);
+			System.out.println(c.getResps());
+			cadastroGabarito.corretor.corrigir(c, g);
 		}
 		
 		//Atribui nota

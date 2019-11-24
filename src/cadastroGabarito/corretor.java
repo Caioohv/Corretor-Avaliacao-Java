@@ -1,12 +1,14 @@
 package cadastroGabarito;
 
+import dataAcess.DAOGabarito;
 import modelo.Cartao;
+import modelo.Gabarito;
 
 public class corretor {
 	private static String gabarito = "";
-	public static Cartao corrigir(Cartao c){
-		gabarito = getGabarito();
-		
+	public static Cartao corrigir(Cartao c, Gabarito g){
+		gabarito = getGabarito(g);
+		System.out.println(gabarito);
 		String correcao = "";
 		
 		for(int i = 0; i < c.getResps().length(); i++) {
@@ -26,8 +28,10 @@ public class corretor {
 		System.out.println(c.getCorrecao());
 		return c;
 	}
-	private static String getGabarito() {
-		return "BCADBCADBCDACBADBCAD";
+	private static String getGabarito(Gabarito g) {
+		Gabarito ok = DAOGabarito.select(g.getAno(), g.getEtapa(), g.getTipo(), g.getArea());
+		System.out.println("Classe corretor: "+g);
+		return ok.getResps();
 		
 	}
 	public static Cartao avaliar(Cartao c, double valorProva, int qntquestoes) {
@@ -39,7 +43,7 @@ public class corretor {
 				result = result + valorquestao;
 			}
 		}
-		c.setResultado(result);
+		c.setResultado((float)result);
 		
 		
 		return c;

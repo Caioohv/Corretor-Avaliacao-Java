@@ -3,10 +3,12 @@ package dataAcess;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import conexao.Conn;
+import modelo.Cartao;
 import net.proteanit.sql.DbUtils;
 
 public class DAOCartao {
@@ -40,8 +42,37 @@ public class DAOCartao {
 			
 			
 	}
-	public static int insert() {
+	public static int insert(Cartao c) {
+		int i = 0;
 		
+		try {	
+			String sql = "insert into cartoes(ano, etapa, resultado, resps, correcao, aluno_ra, area, tipo) values (?,?,?,?,?,?,?,?);";
+			//int ano, int etapa, double resultado, String resps, String correcao, String aluno, String area,String tipo
+			PreparedStatement ps = Conn.connect().prepareStatement(sql);
+			
+			ps.setInt(1, c.getAno());
+			ps.setInt(2, c.getEtapa());
+			ps.setFloat(3, (c.getResultado()));
+			ps.setString(4, c.getResps());
+			ps.setString(5, c.getCorrecao());
+			ps.setString(6, c.getAluno());
+			ps.setString(7, c.getArea());
+			ps.setString(8, c.getTipo());
+			
+			i = ps.executeUpdate();
+			if(i != 1) {
+				JOptionPane.showMessageDialog(null, "Erro! ");
+			}else {
+				JOptionPane.showMessageDialog(null, "Inserido com Sucesso!");
+			}
+		}catch(Exception ex) {
+			JOptionPane.showMessageDialog(null, "Erro!\n"+ex);
+		}finally {
+
+		
+		
+		return i;
+		}
 	}
 	
 }

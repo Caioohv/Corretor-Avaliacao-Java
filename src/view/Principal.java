@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import conexao.Conn;
+import dataAcess.DAOCartao;
 import dataAcess.DAOCursos;
 import dataAcess.DAOGabarito;
 import dataAcess.DAOTurma;
@@ -301,23 +302,7 @@ public class Principal extends JFrame {
 		btnContinuar.setBackground(new Color(102, 51, 153));
 		btnContinuar.setForeground(new Color(255, 255, 204));
 		btnContinuar.setFont(new Font("Teko", Font.BOLD, 20));
-		btnContinuar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				int aa = JOptionPane.showConfirmDialog(null, "Informações:\nAno: "+jcAno.getSelectedItem()+"\nEtapa: "+jcEtapa.getSelectedItem()+"\nTipo: "+jcTipo.getSelectedItem());
-				System.out.println(aa);
-				System.out.println(JOptionPane.OK_OPTION);
-					
-				if(aa == 0) {
-					
-					layeredPane.removeAll();
-					layeredPane.add(criaGabarito);
-					layeredPane.repaint();
-					layeredPane.revalidate();
-				}
-
-				//criaGabarito
-			}
-		});
+		
 		btnContinuar.setBounds(617, 676, 135, 58);
 		gabarito.add(btnContinuar);
 		
@@ -1526,15 +1511,18 @@ public class Principal extends JFrame {
 						System.out.println(aa);
 						System.out.println(JOptionPane.OK_OPTION);
 						if(aa == 0) {
-							JOptionPane.showMessageDialog(null, "Inserido!");
-							layeredPane.removeAll();
-							layeredPane.add(home);
-							layeredPane.repaint();
-							layeredPane.revalidate();
+							
+							
 							Gabarito g = new Gabarito(resps, jcArea.getSelectedItem().toString(), Integer.parseInt(jcAno.getSelectedItem().toString()), Integer.parseInt(jcEtapa.getSelectedItem().toString()), jcTipo.getSelectedItem().toString());
 							//Gabarito g = new Gabarito(resps, "Linguagens", 1, 1,"C");
 							System.out.println(g);
+							System.out.println("Chegou 1");
 							DAOGabarito.insert(g);
+							
+							//layeredPane.removeAll();
+							//layeredPane.add(criaGabarito);
+							//layeredPane.repaint();
+							//layeredPane.revalidate();
 						}
 						
 				
@@ -1784,6 +1772,16 @@ public class Principal extends JFrame {
 		cursos.add(button_4);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				Gabarito g = DAOGabarito.select(Integer.parseInt(String.valueOf(jcAnoCad.getSelectedItem().toString())), Integer.parseInt(String.valueOf(jcEtapaCad.getSelectedItem().toString())), jcTipo.getSelectedItem().toString().toUpperCase(), jcAreaCad.getSelectedItem().toString().toUpperCase());
+				System.out.println("Principal - 1 - " + g);
+				System.out.println(Integer.parseInt(String.valueOf(jcAnoCad.getSelectedItem().toString())));
+				System.out.println(Integer.parseInt(String.valueOf(jcEtapaCad.getSelectedItem().toString())));
+				System.out.println(jcTipo.getSelectedItem().toString());
+				System.out.println(jcAreaCad.getSelectedItem().toString());
+				System.out.println(" - - - - - - -");
+				
+				
 				ArrayList<Cartao> ar = new ArrayList<Cartao>();
 				DefaultTableModel dcm = new DefaultTableModel();
 				dcm.addColumn("RA:");
@@ -1791,11 +1789,29 @@ public class Principal extends JFrame {
 				dcm.addColumn("Correção:");
 				dcm.addColumn("Respostas:");
 				try {
-					ar = Main.lerGabaritoR();
+					System.out.println("Principal - 2 - " + g);
+					ar = Main.lerGabaritoR(g);
 					
-					
+					System.out.println("CORRIGIDO - - - - - - - - -\n\n");
 					for(Cartao c: ar) {
 						dcm.addRow(new Object[] {c.getAluno(), c.getResultado(), c.getCorrecao(), c.getResps()});
+						
+						//int ano, int etapa, double resultado, String resps, String correcao, String aluno, String area,String tipo
+						//Cartao c = new Cartao(c.getAno(), c.getEtapa(), c.getResultado(), c.getResps(), c.getCorrecao(), c.getAluno(), c.getArea(), c.getTipo())
+						
+						c.setAno(Integer.parseInt(String.valueOf(jcAnoCad.getSelectedItem())));
+						c.setEtapa(Integer.parseInt(String.valueOf(jcEtapaCad.getSelectedItem())));
+						//Resultado ja setado
+						//resps ja setado
+						//correcao ja setado
+						//aluno ja setado
+						c.setArea(String.valueOf(jcAreaCad.getSelectedItem()));
+						c.setTipo(String.valueOf(jcTipoCad.getSelectedItem()));
+						
+						DAOCartao.insert(c);
+						System.out.println(c);
+						
+						
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -1919,6 +1935,23 @@ public class Principal extends JFrame {
 				
 			}
 		});
-		
+		btnContinuar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int aa = JOptionPane.showConfirmDialog(null, "Informações:\nAno: "+jcAno.getSelectedItem()+"\nEtapa: "+jcEtapa.getSelectedItem()+"\nTipo: "+jcTipo.getSelectedItem()+"\nÁrea: "+jcArea.getSelectedItem());
+				
+				System.out.println(aa);
+				System.out.println(JOptionPane.OK_OPTION);
+					
+				if(aa == 0) {
+					
+					layeredPane.removeAll();
+					layeredPane.add(criaGabarito);
+					layeredPane.repaint();
+					layeredPane.revalidate();
+				}
+
+				//criaGabarito
+			}
+		});
 	}
 }

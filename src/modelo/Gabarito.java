@@ -59,7 +59,7 @@ public class Gabarito {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return ano + " - " + etapa +"° etapa - "+ tipo + " - " + area + ": "+resps;
+		return ano + " - " + etapa +"° etapa - "+ tipo + " - " + area + " - "+resps;
 	}
 	
 }
