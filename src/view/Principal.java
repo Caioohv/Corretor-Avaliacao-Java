@@ -19,6 +19,7 @@ import modelo.Aluno;
 import modelo.Cartao;
 import modelo.Curso;
 import modelo.Gabarito;
+import modelo.Ordem;
 import modelo.Turma;
 import corretor.Main;
 
@@ -121,6 +122,7 @@ public class Principal extends JFrame {
 			private JTextField jtRACadAluno;
 			private JTextField jtCodTruma;
 			private JTextField jtCadNome;
+			private JTable tableDados;
 
 	
 	public Principal() {
@@ -503,7 +505,7 @@ public class Principal extends JFrame {
 		button_9.setBounds(335, 676, 135, 58);
 		alunos.add(button_9);
 		
-		JLabel lblOrdenarPor = new JLabel("Ordenar por:");
+		JLabel lblOrdenarPor = new JLabel("Ordem:");
 		lblOrdenarPor.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOrdenarPor.setForeground(new Color(51, 51, 51));
 		lblOrdenarPor.setFont(new Font("Teko", Font.PLAIN, 24));
@@ -511,6 +513,12 @@ public class Principal extends JFrame {
 		alunos.add(lblOrdenarPor);
 		
 		JComboBox comboOrder = new JComboBox();
+		comboOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Ordem nome = (Ordem) comboOrder.getSelectedItem();
+				DAOAluno.listarGeral(list, nome);
+			}
+		});
 		comboOrder.setBounds(10, 140, 319, 32);
 		alunos.add(comboOrder);
 		
@@ -554,6 +562,24 @@ public class Principal extends JFrame {
 		lblDados.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 30));
 		lblDados.setBounds(10, 11, 742, 66);
 		dados.add(lblDados);
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBounds(12, 185, 740, 548);
+		dados.add(scrollPane_3);
+		
+		tableDados = new JTable();
+		scrollPane_3.setViewportView(tableDados);
+		
+		JComboBox comboOrder2 = new JComboBox();
+		comboOrder2.setBounds(10, 131, 319, 32);
+		dados.add(comboOrder2);
+		
+		JLabel label_25 = new JLabel("Ordem:");
+		label_25.setHorizontalAlignment(SwingConstants.CENTER);
+		label_25.setForeground(new Color(51, 51, 51));
+		label_25.setFont(new Font("Teko", Font.PLAIN, 24));
+		label_25.setBounds(10, 88, 319, 32);
+		dados.add(label_25);
 		
 		correcao = new JPanel();
 		correcao.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -1792,6 +1818,28 @@ public class Principal extends JFrame {
 				lblOsk.setForeground(new Color(255, 255, 204));
 				lblSair.setForeground(new Color(255, 255, 204));
 				
+				DefaultComboBoxModel<Ordem> dcbm = new DefaultComboBoxModel<Ordem>();
+				Ordem nome = new Ordem();
+				nome.setPrint("Nome, de A-Z");
+				nome.setOrder("nome asc");
+				Ordem nomedesc = new Ordem();
+				nomedesc.setPrint("Nome, de Z-A");
+				nomedesc.setOrder("nome desc");
+				Ordem ras = new Ordem();
+				ras.setPrint("RA, do Menor/Maior");
+				ras.setOrder("ra asc");
+				Ordem rasd = new Ordem();
+				rasd.setPrint("RA, do Maior/Menor");
+				rasd.setOrder("ra desc");
+				dcbm.addElement(nome);
+				dcbm.addElement(nomedesc);
+				dcbm.addElement(ras);
+				dcbm.addElement(rasd);
+				comboOrder2.setModel(dcbm);
+				comboOrder2.setSelectedItem(nome);
+				DAOAluno.listDados(tableDados, nome);
+				
+				
 				layeredPane.removeAll();
 				layeredPane.add(dados);
 				layeredPane.repaint();
@@ -1977,11 +2025,31 @@ public class Principal extends JFrame {
 				layeredPane.add(alunos);
 				layeredPane.repaint();
 				layeredPane.revalidate();
-				DAOAluno.listarGeral(list);
+				
 				DAOTurma.listar(comboTurma);
 				lblSugest.setText(DAOAluno.suggestRA());
 				jtCodTruma.setText(comboTurma.getSelectedItem().toString());
 				
+				DefaultComboBoxModel<Ordem> dcbm = new DefaultComboBoxModel<Ordem>();
+				Ordem nome = new Ordem();
+				nome.setPrint("Nome, de A-Z");
+				nome.setOrder("nome asc");
+				Ordem nomedesc = new Ordem();
+				nomedesc.setPrint("Nome, de Z-A");
+				nomedesc.setOrder("nome desc");
+				Ordem ras = new Ordem();
+				ras.setPrint("RA, do Menor/Maior");
+				ras.setOrder("ra asc");
+				Ordem rasd = new Ordem();
+				rasd.setPrint("RA, do Maior/Menor");
+				rasd.setOrder("ra desc");
+				dcbm.addElement(nome);
+				dcbm.addElement(nomedesc);
+				dcbm.addElement(ras);
+				dcbm.addElement(rasd);
+				comboOrder.setModel(dcbm);
+				comboOrder.setSelectedItem(nome);
+				DAOAluno.listarGeral(list, nome);
 			}
 		});
 		lblCursos.addMouseListener(new MouseAdapter() {
@@ -2096,9 +2164,10 @@ public class Principal extends JFrame {
 		jtRACadAluno.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent arg0) {
-				DAOAluno.listarbyRA(list, (jtRACadAluno.getText()));
+				DAOAluno.listarbyRA(list, (jtRACadAluno.getText()),(Ordem) comboOrder.getSelectedItem());
 				if(jtRACadAluno.getText().isEmpty()) {
-					DAOAluno.listarGeral(list);
+					Ordem nome = (Ordem) comboOrder.getSelectedItem();
+					DAOAluno.listarGeral(list, nome);
 					lblSugest.setText(DAOAluno.suggestRA());
 				}
 			}
@@ -2106,9 +2175,10 @@ public class Principal extends JFrame {
 		jtCadNome.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent arg0) {
-				DAOAluno.listarbyNome(list, (jtCadNome.getText()));
+				DAOAluno.listarbyNome(list, (jtRACadAluno.getText()),(Ordem) comboOrder.getSelectedItem());
 				if(jtCadNome.getText().isEmpty()) {
-					DAOAluno.listarGeral(list);
+					Ordem nome = (Ordem) comboOrder.getSelectedItem();
+					DAOAluno.listarGeral(list, nome);
 					lblSugest.setText(DAOAluno.suggestRA());
 				}
 			}
@@ -2123,8 +2193,8 @@ public class Principal extends JFrame {
 				lblSugest.setText(DAOAluno.suggestRA());
 				jtCadNome.setText("");
 				
-				DAOAluno.listarGeral(list);
-				
+				Ordem nome = (Ordem) comboOrder.getSelectedItem();
+				DAOAluno.listarGeral(list, nome);
 				
 				
 				
@@ -2137,7 +2207,8 @@ public class Principal extends JFrame {
 				System.out.println(a);
 				DAOAluno.update(a);
 				lblSugest.setText(DAOAluno.suggestRA());
-				DAOAluno.listarGeral(list);
+				Ordem nome = (Ordem) comboOrder.getSelectedItem();
+				DAOAluno.listarGeral(list, nome);
 			}
 		});
 		button_9.addActionListener(new ActionListener() {
@@ -2146,7 +2217,8 @@ public class Principal extends JFrame {
 				System.out.println(a);
 				DAOAluno.delete(a);
 				lblSugest.setText(DAOAluno.suggestRA());
-				DAOAluno.listarGeral(list);
+				Ordem nome = (Ordem) comboOrder.getSelectedItem();
+				DAOAluno.listarGeral(list, nome);
 			}
 
 		});
@@ -2169,5 +2241,4 @@ public class Principal extends JFrame {
 			}
 		});
 	}
-	
 }

@@ -48,10 +48,10 @@ public class Conn {
             
             String usuario = "postgres";
             String senha = "root";
-            System.out.println(usuario + " - " + senha);
+            //System.out.println(usuario + " - " + senha);
             //String banco = "jdbc:postgresql://200.18.128.54/caiohvieira";
             String banco = "jdbc:postgresql://localhost/corretor";
-            System.out.println("Entrou na conn = 1");
+           // System.out.println("Entrou na conn = 1");
             try{
                 Class.forName("org.postgresql.Driver");
                 System.out.println(" - - - - - - - CONEXÃO CRIADA - - - - - - - - - - -");
