@@ -10,10 +10,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import conexao.Conn;
+import dataAcess.DAOAluno;
 import dataAcess.DAOCartao;
 import dataAcess.DAOCursos;
 import dataAcess.DAOGabarito;
 import dataAcess.DAOTurma;
+import modelo.Aluno;
 import modelo.Cartao;
 import modelo.Curso;
 import modelo.Gabarito;
@@ -50,6 +52,10 @@ import javax.swing.JTextField;
 import java.awt.GridLayout;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 public class Principal extends JFrame {
 	private Gabarito novoGab;
@@ -112,6 +118,9 @@ public class Principal extends JFrame {
 			private JTable jtCorrecao;
 			private JTextField jtCodTurma;
 			private JTextField textField_3;
+			private JTextField jtRACadAluno;
+			private JTextField jtCodTruma;
+			private JTextField jtCadNome;
 
 	
 	public Principal() {
@@ -374,7 +383,7 @@ public class Principal extends JFrame {
 		jcAnoTurmas.setBounds(252, 358, 260, 20);
 		turmas.add(jcAnoTurmas);
 		
-		Button button_5 = new Button("Cadastrar");
+		Button button_5 = new Button("Atualizar");
 		button_5.setActionCommand("Atualizar");
 		button_5.setForeground(new Color(255, 255, 204));
 		button_5.setFont(new Font("Teko", Font.BOLD, 20));
@@ -406,6 +415,132 @@ public class Principal extends JFrame {
 		lblAlunos_2.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 30));
 		lblAlunos_2.setBounds(10, 11, 742, 66);
 		alunos.add(lblAlunos_2);
+		
+		JComboBox comboTurma = new JComboBox();
+		comboTurma.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				jtCodTruma.setText(comboTurma.getSelectedItem().toString());
+			}
+		});
+		comboTurma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		comboTurma.setBounds(408, 428, 344, 32);
+		alunos.add(comboTurma);
+		
+		JLabel label_24 = new JLabel("C\u00F3digo da Turma:");
+		label_24.setHorizontalAlignment(SwingConstants.CENTER);
+		label_24.setForeground(new Color(51, 51, 51));
+		label_24.setFont(new Font("Teko", Font.PLAIN, 24));
+		label_24.setBounds(408, 385, 344, 32);
+		alunos.add(label_24);
+		
+		jtRACadAluno = new JTextField();
+		
+		jtRACadAluno.setColumns(10);
+		jtRACadAluno.setBounds(408, 226, 342, 32);
+		alunos.add(jtRACadAluno);
+		
+		JLabel lblRegistroAcadmicora = new JLabel("Registro Acad\u00EAmico (RA)");
+		lblRegistroAcadmicora.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRegistroAcadmicora.setForeground(new Color(51, 51, 51));
+		lblRegistroAcadmicora.setFont(new Font("Teko", Font.PLAIN, 24));
+		lblRegistroAcadmicora.setBounds(408, 183, 189, 32);
+		alunos.add(lblRegistroAcadmicora);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 183, 319, 320);
+		alunos.add(scrollPane_1);
+		
+		JList list = new JList();
+		
+		scrollPane_1.setViewportView(list);
+		
+		jtCodTruma = new JTextField();
+		jtCodTruma.setColumns(10);
+		jtCodTruma.setBounds(408, 471, 344, 32);
+		alunos.add(jtCodTruma);
+		
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNome.setForeground(new Color(51, 51, 51));
+		lblNome.setFont(new Font("Teko", Font.PLAIN, 24));
+		lblNome.setBounds(408, 269, 344, 32);
+		alunos.add(lblNome);
+		
+		jtCadNome = new JTextField();
+		
+		jtCadNome.setColumns(10);
+		jtCadNome.setBounds(408, 312, 344, 32);
+		alunos.add(jtCadNome);
+		
+		Button button_7 = new Button("Atualizar");
+		
+		button_7.setForeground(new Color(255, 255, 204));
+		button_7.setFont(new Font("Teko", Font.BOLD, 20));
+		button_7.setBackground(new Color(102, 51, 153));
+		button_7.setActionCommand("Atualizar");
+		button_7.setBounds(476, 676, 135, 58);
+		alunos.add(button_7);
+		
+		Button button_8 = new Button("Cadastrar");
+		
+		button_8.setForeground(new Color(255, 255, 204));
+		button_8.setFont(new Font("Teko", Font.BOLD, 20));
+		button_8.setBackground(new Color(102, 51, 153));
+		button_8.setActionCommand("Inserir");
+		button_8.setBounds(617, 676, 135, 58);
+		alunos.add(button_8);
+		
+		Button button_9 = new Button("Excluir");
+		
+		button_9.setForeground(new Color(255, 51, 0));
+		button_9.setFont(new Font("Teko", Font.BOLD, 20));
+		button_9.setBackground(new Color(102, 51, 153));
+		button_9.setActionCommand("Deletar");
+		button_9.setBounds(335, 676, 135, 58);
+		alunos.add(button_9);
+		
+		JLabel lblOrdenarPor = new JLabel("Ordenar por:");
+		lblOrdenarPor.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOrdenarPor.setForeground(new Color(51, 51, 51));
+		lblOrdenarPor.setFont(new Font("Teko", Font.PLAIN, 24));
+		lblOrdenarPor.setBounds(10, 97, 319, 32);
+		alunos.add(lblOrdenarPor);
+		
+		JComboBox comboOrder = new JComboBox();
+		comboOrder.setBounds(10, 140, 319, 32);
+		alunos.add(comboOrder);
+		
+		JLabel lblNewLabel = new JLabel("Sugerido:");
+		lblNewLabel.setFont(new Font("Teko", Font.PLAIN, 18));
+		lblNewLabel.setBounds(607, 185, 62, 32);
+		alunos.add(lblNewLabel);
+		
+		JLabel lblSugest = new JLabel("");
+		lblSugest.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				jtRACadAluno.setText(lblSugest.getText());
+			}
+		});
+		lblSugest.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSugest.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				
+			}
+		});
+		lblSugest.setFont(new Font("Teko", Font.PLAIN, 18));
+		lblSugest.setBounds(663, 183, 89, 32);
+		alunos.add(lblSugest);
+		
+		JLabel lblcliqueParaUsar = new JLabel("(Clique para usar)");
+		lblcliqueParaUsar.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblcliqueParaUsar.setBounds(663, 155, 89, 32);
+		alunos.add(lblcliqueParaUsar);
 		
 		dados = new JPanel();
 		dados.setBackground(Color.WHITE);
@@ -1842,6 +1977,11 @@ public class Principal extends JFrame {
 				layeredPane.add(alunos);
 				layeredPane.repaint();
 				layeredPane.revalidate();
+				DAOAluno.listarGeral(list);
+				DAOTurma.listar(comboTurma);
+				lblSugest.setText(DAOAluno.suggestRA());
+				jtCodTruma.setText(comboTurma.getSelectedItem().toString());
+				
 			}
 		});
 		lblCursos.addMouseListener(new MouseAdapter() {
@@ -1953,5 +2093,81 @@ public class Principal extends JFrame {
 				//criaGabarito
 			}
 		});
+		jtRACadAluno.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				DAOAluno.listarbyRA(list, (jtRACadAluno.getText()));
+				if(jtRACadAluno.getText().isEmpty()) {
+					DAOAluno.listarGeral(list);
+					lblSugest.setText(DAOAluno.suggestRA());
+				}
+			}
+		});
+		jtCadNome.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				DAOAluno.listarbyNome(list, (jtCadNome.getText()));
+				if(jtCadNome.getText().isEmpty()) {
+					DAOAluno.listarGeral(list);
+					lblSugest.setText(DAOAluno.suggestRA());
+				}
+			}
+		});
+		button_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Aluno a = new Aluno(jtRACadAluno.getText(),jtCadNome.getText(),jtCodTruma.getText());
+				System.out.println(a);
+				DAOAluno.insert(a);
+				
+				jtRACadAluno.setText("");
+				lblSugest.setText(DAOAluno.suggestRA());
+				jtCadNome.setText("");
+				
+				DAOAluno.listarGeral(list);
+				
+				
+				
+				
+				
+			}
+		});
+		button_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Aluno a = new Aluno(jtRACadAluno.getText(),jtCadNome.getText(),jtCodTruma.getText());
+				System.out.println(a);
+				DAOAluno.update(a);
+				lblSugest.setText(DAOAluno.suggestRA());
+				DAOAluno.listarGeral(list);
+			}
+		});
+		button_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Aluno a = new Aluno(jtRACadAluno.getText(),jtCadNome.getText(),jtCodTurma.getText());
+				System.out.println(a);
+				DAOAluno.delete(a);
+				lblSugest.setText(DAOAluno.suggestRA());
+				DAOAluno.listarGeral(list);
+			}
+
+		});
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				
+				int selectedIx = list.getSelectedIndex();      
+
+			    
+			    Aluno sel = (Aluno) list.getModel().getElementAt(selectedIx);
+			    
+			    jtCodTruma.setText(sel.getTurma());
+			    jtRACadAluno.setText(sel.getRa());
+			    jtCadNome.setText(sel.getNome());
+			    
+			    System.out.println(sel);
+
+				
+				
+			}
+		});
 	}
+	
 }
