@@ -66,12 +66,31 @@ public class DAOCartao {
 				JOptionPane.showMessageDialog(null, "Inserido com Sucesso!");
 			}
 		}catch(Exception ex) {
-			JOptionPane.showMessageDialog(null, "Erro!\n"+ex);
+			JOptionPane.showMessageDialog(null, "Erro! DAOCartão - Insert \n"+ex);
 		}finally {
 
 		
 		
 		return i;
+		}
+	}
+	public static void delete(Cartao c) {
+		try {
+			PreparedStatement ps = Conn.connect().prepareStatement("delete from cartoes where aluno_ra = ? and ano = ? and etapa = ? and area = ? and tipo = ?");
+			ps.setString(1, c.getAluno());
+			ps.setInt(2, c.getAno());
+			ps.setInt(3, c.getEtapa());
+			ps.setString(4, c.getArea());
+			ps.setString(5, c.getTipo());
+			int i = ps.executeUpdate();
+			if(i != 1) {
+				JOptionPane.showMessageDialog(null, "Erro! :( ");
+			}else {
+				JOptionPane.showMessageDialog(null, "Excluido com Sucesso!");
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
 		}
 	}
 	

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import conexao.Conn;
 import dataAcess.DAOAluno;
@@ -564,7 +565,7 @@ public class Principal extends JFrame {
 		dados.add(lblDados);
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(12, 185, 740, 548);
+		scrollPane_3.setBounds(12, 185, 740, 485);
 		dados.add(scrollPane_3);
 		
 		tableDados = new JTable();
@@ -580,6 +581,15 @@ public class Principal extends JFrame {
 		label_25.setFont(new Font("Teko", Font.PLAIN, 24));
 		label_25.setBounds(10, 88, 319, 32);
 		dados.add(label_25);
+		
+		Button button_12 = new Button("Excluir");
+		
+		button_12.setForeground(new Color(255, 51, 0));
+		button_12.setFont(new Font("Teko", Font.BOLD, 20));
+		button_12.setBackground(new Color(102, 51, 153));
+		button_12.setActionCommand("Deletar");
+		button_12.setBounds(617, 676, 135, 58);
+		dados.add(button_12);
 		
 		correcao = new JPanel();
 		correcao.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -1820,16 +1830,16 @@ public class Principal extends JFrame {
 				
 				DefaultComboBoxModel<Ordem> dcbm = new DefaultComboBoxModel<Ordem>();
 				Ordem nome = new Ordem();
-				nome.setPrint("Nome, de A-Z");
+				nome.setPrint("Nome, Ascendente");
 				nome.setOrder("nome asc");
 				Ordem nomedesc = new Ordem();
-				nomedesc.setPrint("Nome, de Z-A");
+				nomedesc.setPrint("Nome, Descendente");
 				nomedesc.setOrder("nome desc");
 				Ordem ras = new Ordem();
-				ras.setPrint("RA, do Menor/Maior");
+				ras.setPrint("RA, Ascendente");
 				ras.setOrder("ra asc");
 				Ordem rasd = new Ordem();
-				rasd.setPrint("RA, do Maior/Menor");
+				rasd.setPrint("RA, Descendente");
 				rasd.setOrder("ra desc");
 				dcbm.addElement(nome);
 				dcbm.addElement(nomedesc);
@@ -2032,16 +2042,16 @@ public class Principal extends JFrame {
 				
 				DefaultComboBoxModel<Ordem> dcbm = new DefaultComboBoxModel<Ordem>();
 				Ordem nome = new Ordem();
-				nome.setPrint("Nome, de A-Z");
+				nome.setPrint("Nome, Ascendente");
 				nome.setOrder("nome asc");
 				Ordem nomedesc = new Ordem();
-				nomedesc.setPrint("Nome, de Z-A");
+				nomedesc.setPrint("Nome, Descendente");
 				nomedesc.setOrder("nome desc");
 				Ordem ras = new Ordem();
-				ras.setPrint("RA, do Menor/Maior");
+				ras.setPrint("RA, do Ascendente");
 				ras.setOrder("ra asc");
 				Ordem rasd = new Ordem();
-				rasd.setPrint("RA, do Maior/Menor");
+				rasd.setPrint("RA, do Descendente");
 				rasd.setOrder("ra desc");
 				dcbm.addElement(nome);
 				dcbm.addElement(nomedesc);
@@ -2217,7 +2227,9 @@ public class Principal extends JFrame {
 				System.out.println(a);
 				DAOAluno.delete(a);
 				lblSugest.setText(DAOAluno.suggestRA());
-				Ordem nome = (Ordem) comboOrder.getSelectedItem();
+				Ordem nome = new Ordem();
+				nome.setPrint("Nome, Ascendente");
+				nome.setOrder("nome asc");
 				DAOAluno.listarGeral(list, nome);
 			}
 
@@ -2238,6 +2250,37 @@ public class Principal extends JFrame {
 
 				
 				
+			}
+		});
+		button_12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int s = tableDados.getSelectedRow();
+				//int ano, int etapa, float resultado, String resps, String correcao, String aluno, String area,String tipo
+				TableModel t = tableDados.getModel();
+				
+
+				System.out.println(t.getValueAt(tableDados.getSelectedRow(), 0)); 
+				System.out.println(t.getValueAt(tableDados.getSelectedRow(), 1));
+				System.out.println(t.getValueAt(tableDados.getSelectedRow(), 2));
+				System.out.println(t.getValueAt(tableDados.getSelectedRow(), 3));
+				System.out.println(t.getValueAt(tableDados.getSelectedRow(), 4));
+				System.out.println(t.getValueAt(tableDados.getSelectedRow(), 5));
+				System.out.println(t.getValueAt(tableDados.getSelectedRow(), 6));
+				System.out.println(t.getValueAt(tableDados.getSelectedRow(), 7));
+				
+				String ra = (String) t.getValueAt(tableDados.getSelectedRow(), 0), 
+						nome = (String) t.getValueAt(tableDados.getSelectedRow(), 1), 
+						turma = (String) t.getValueAt(tableDados.getSelectedRow(), 2);
+				float resultado =  Float.valueOf(String.valueOf(t.getValueAt(tableDados.getSelectedRow(), 3)));
+				int ano = (Integer) t.getValueAt(tableDados.getSelectedRow(), 4), 
+						etapa = (Integer) t.getValueAt(tableDados.getSelectedRow(), 5);
+				String area = (String) t.getValueAt(tableDados.getSelectedRow(), 6), 
+						tipo = (String) t.getValueAt(tableDados.getSelectedRow(), 7);
+				
+				Cartao c = new Cartao(ra, nome, turma, resultado, ano, etapa, area, tipo);
+				DAOCartao.delete(c);
+				Ordem nomea = (Ordem) comboOrder.getSelectedItem();
+				DAOAluno.listDados(tableDados, nomea);
 			}
 		});
 	}

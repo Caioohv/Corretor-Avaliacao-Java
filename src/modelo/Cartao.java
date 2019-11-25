@@ -40,6 +40,14 @@ public class Cartao {
 		this.area = area;
 		this.tipo = tipo;
 	}
+	public Cartao(String ra, String nome, String turma, float resultado, int ano, int etapa, String area, String tipo) {
+		this.aluno = ra;
+		this.resultado = resultado;
+		this.ano = ano;
+		this.etapa = etapa;
+		this.area = area;
+		this.tipo = tipo;
+	}
 	//com id
 	public Cartao(int id, int ano, int etapa, float resultado, String resps, String correcao, String aluno,
 			String area, String tipo) {
