@@ -1,4 +1,4 @@
-Reelatório
+Relatório
 
 Integrante Pedro
 
@@ -44,10 +44,13 @@ O que eu fiz essa semana:
 O que eu pretendo fazer semana que vem: 
 O que está me impedindo:
 
+
+
+
 Integrante Carlos
 
 Semana dia 31/10 à 06/11:
-O que eu fiz essa semana: Terminei, junto com o Caio, o processamento de imagem (achamos uma biblioteca que compilou);
+O que eu fiz essa semana: Terminei, junto com o Caio, o processamento de imagem;
 O que eu pretendo fazer semana que vem: Reestruturação do programa ao redor da nova biblioteca;
 O que está me impedindo: Nada.
 
@@ -66,24 +69,27 @@ O que eu fiz essa semana: Terminei, com o Caio a interface, e comecei o debuggin
 O que eu pretendo fazer semana que vem: Teoricamente nada já que acabou, mas caso esteja atoa, mais debugging, por interesse no assunto;
 O que está me impedindo: Nada.
 
+
+
+
 Integrante Caio
 
 Semana dia 31/10 à 06/11:
-O que eu fiz essa semana: 
-O que eu pretendo fazer semana que vem: 
-O que está me impedindo: 
+O que eu fiz essa semana: Conseguimos resolver o problema do OpenCV, e concluímos a etapa de leitura e reconhecimento de respostas das imagens do gabarito. Mais detalhes na apresentação.
+O que eu pretendo fazer semana que vem: Criar o resto do programa, o adaptando ao codigo de leitura com parâmetro de caminho de arquivo
+O que está me impedindo: Tempo
 
 Semana dia 07/11 à 13/11:
-O que eu fiz essa semana: 
-O que eu pretendo fazer semana que vem: 
-O que está me impedindo: 
+O que eu fiz essa semana: Comecei a criar as funções que terá o programa
+O que eu pretendo fazer semana que vem: Estudar javaFX para a criação da nova interface.
+O que está me impedindo: Falta de conhecimento
 
 Semana dia 14/09 à 20/10:
-O que eu fiz essa semana: 
-O que eu pretendo fazer semana que vem: 
-O que está me impedindo: 
+O que eu fiz essa semana: Começamos a interface, em swing mesmo, por não termos tempo para estudar javafx, e também a articulá-la para o programa 
+O que eu pretendo fazer semana que vem: Terminar a interface e a apresentação para a banca
+O que está me impedindo: Tempo
 
 Semana dia 21/11 à 27/11:
-O que eu fiz essa semana: 
-O que eu pretendo fazer semana que vem: 
-O que está me impedindo:    
+O que eu fiz essa semana: Terminei, junto com o Carlos, a interface e o as funcionalidades. falta debuggar as entradas e corrigir algumas falhas da leitura de imagem.
+O que eu pretendo fazer semana que vem: Terminar de corrigir falhas e implementar a leitura do código de barras
+O que está me impedindo: tecnicamente nada
