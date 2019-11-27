@@ -49,22 +49,22 @@ Integrante Carlos
 Semana dia 31/10 à 06/11:
 O que eu fiz essa semana: Terminei, junto com o Caio, o processamento de imagem (achamos uma biblioteca que compilou);
 O que eu pretendo fazer semana que vem: Reestruturação do programa ao redor da nova biblioteca;
-O que está me impedindo: Nada.
+O que está me impedindo: Tecnicamente nada.
 
 Semana dia 07/11 à 13/11:
 O que eu fiz essa semana: Comecei, com o Caio, a reestruturação do programa ao redor da biblioteca que compilou;
 O que eu pretendo fazer semana que vem: Terminar a reestruturação do código e Começar a nova interface (se possível em Javafx);
-O que está me impedindo: Nada.
+O que está me impedindo: Tecnicamente nada.
 
 Semana dia 14/09 à 20/10:
 O que eu fiz essa semana: Comecei, com o Caio, a nova interface (será em swing mesmo);
 O que eu pretendo fazer semana que vem: Terminar a interface e fazer debug;
-O que está me impedindo: Nada.
+O que está me impedindo: Tecnicamente nada.
 
 Semana dia 21/11 à 27/11:
 O que eu fiz essa semana: Terminei, com o Caio a interface, e comecei o debugging;
 O que eu pretendo fazer semana que vem: Teoricamente nada já que acabou, mas caso esteja atoa, mais debugging, por interesse no assunto;
-O que está me impedindo: Nada.
+O que está me impedindo: Tecnicamente nada.
 
 Integrante Caio
 
