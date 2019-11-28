@@ -2,25 +2,26 @@ Relatório
 
 Integrante Pedro
 
-Semana dia 31/10 à 06/11:
-O que eu fiz essa semana: 
-O que eu pretendo fazer semana que vem: 
-O que está me impedindo: 
+Semana dia 31/10 a 06/11:
+- O que eu fiz essa semana: Estudei diagrama de classes e programação para ajudar no projeto e comecei a preparar a apresentação final.
+- O que eu vou fazer semana que vem: Pretendo continuar a preparar a apresentação final, e fazer uma reunião com o grupo.
+- O que está me impedindo: Tecnicamente nada
 
-Semana dia 07/11 à 13/11:
-O que eu fiz essa semana: 
-O que eu pretendo fazer semana que vem: 
-O que está me impedindo: 
+Semana dia 07/11 a 13/11:
+- O que eu fiz essa semana: Fiz uma reunião com o grupo terça de noite pelo whatsapp, organizei o product backlog, selecionando as estórias que já foram feitas e as que ainda faltavam para concluir o projeto.
+- O que eu vou fazer semana que vem: pretendo fazer outra reunião com o grupo, estudar javaFx para tentar ajudar na interface do projeto e continuar a preparação da 11 entrega.
+- O que está me impedindo: Tecnicamente nada
 
-Semana dia 14/09 à 20/10:
-O que eu fiz essa semana: 
-O que eu pretendo fazer semana que vem: 
-O que está me impedindo: 
+Semana dia 14/11 a 20/11:
+- O que eu fiz essa semana: Fiz uma reunião com o grupo terça na aula do Jânio, estudei um pouco de javaFx, comecei a preparar a documentação da 11 sprint de acordo com o product e organizar os relatórios de acordo com as datas. 
+- O que eu vou fazer semana que vem: Pretendo fazer uma reunião geral com a equipe para discutirmos nossa entrega final, pretendo continuar a ajudar o Allan a fazer os diagramas e finalizar a preparação da apresentação da 11 entrega.
+- O que está me impedindo: Tecnicamente nada
 
-Semana dia 21/11 à 27/11:
-O que eu fiz essa semana: 
-O que eu pretendo fazer semana que vem: 
-O que está me impedindo:
+Semana dia 21/11 a 27/11:
+- O que eu fiz essa semana: Fiz uma reunião geral e final com a equipe, modifiquei o product e a sprint, ajudei  Allan no diagrama,finalizei a preparação da apresentação da 11 entrega e enviei toda a documentação para o GitHub.
+- O que eu vou fazer semana que vem: Nada pois já teremos finalizado o projeto.
+- O que está me impedindo: Tecnicamente nada
+
 
 Integrante Allan
 
