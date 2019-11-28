@@ -572,6 +572,7 @@ public class Principal extends JFrame {
 		scrollPane_3.setViewportView(tableDados);
 		
 		JComboBox comboOrder2 = new JComboBox();
+		
 		comboOrder2.setBounds(10, 131, 319, 32);
 		dados.add(comboOrder2);
 		
@@ -2278,9 +2279,16 @@ public class Principal extends JFrame {
 						tipo = (String) t.getValueAt(tableDados.getSelectedRow(), 7);
 				
 				Cartao c = new Cartao(ra, nome, turma, resultado, ano, etapa, area, tipo);
+				System.out.println(ra+ nome+ turma+ resultado+ ano+ etapa+ area+ tipo);
 				DAOCartao.delete(c);
-				Ordem nomea = (Ordem) comboOrder.getSelectedItem();
+				Ordem nomea = (Ordem) comboOrder2.getSelectedItem();
+				System.out.println(nomea);
 				DAOAluno.listDados(tableDados, nomea);
+			}
+		});
+		comboOrder2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				DAOAluno.listDados(tableDados, (Ordem) comboOrder2.getSelectedItem());
 			}
 		});
 	}
