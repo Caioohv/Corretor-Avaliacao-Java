@@ -1,5 +1,7 @@
 Relatório
 
+/*Adc linha para commit / Merge*/
+
 Integrante Pedro
 
 Semana dia 31/10 a 06/11:
