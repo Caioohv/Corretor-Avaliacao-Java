@@ -81,7 +81,17 @@ public class Main {
             }
             //System.out.println(resps);
             Cartao c = new Cartao();
-            c.setAluno((JOptionPane.showInputDialog(null, "Qual o RA do aluno do arquivo "+s+" ?")));
+            //c.setAluno((JOptionPane.showInputDialog(null, "Qual o RA do aluno do arquivo "+s+" ?")));
+            //LÊ CODIGO DE BARRAS 
+            
+            
+            
+            
+            
+            
+            
+            
+            
             //c.setAluno(I);
             c.setResps(resps);
             System.out.println(c);
@@ -219,6 +229,11 @@ public static ArrayList<String> getPaths() throws Exception {
 		String resps; int ano = 2019; int etapa = 3;
 		double valorProva= Double.parseDouble(JOptionPane.showInputDialog(null, "Qual o valor da prova?\nPadrão: 10"));
 		int qntquestoes=20;
+		
+		// Colocar a leitura do codigo de barras
+		
+		
+		
 		
 		ArrayList<Cartao> valores = ler();
 		for(Cartao c: valores) {
