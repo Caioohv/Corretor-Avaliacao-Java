@@ -5,6 +5,11 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
 
+import com.google.zxing.NotFoundException;
+import com.google.zxing.Reader;
+import com.google.zxing.Result;
+import com.google.zxing.oned.Code128Reader;
+
 import dataAcess.DAOGabarito;
 import modelo.Cartao;
 import modelo.Gabarito;
@@ -12,6 +17,8 @@ import modelo.Gabarito;
 import static corretor.Util.getSource;
 import static corretor.Util.sout;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +67,36 @@ public class Main {
         
     }
     */
+    
+    public static ArrayList<String> lerRAs (ArrayList<String> path) {
+    	ArrayList<String> RAs = new ArrayList<String>();
+    	try {
+    		for(String s : path){ 		
+				String p = corretor.MyBarcodeReader.readBarCode(s); 
+				RAs.add(p);
+    		}
+    	}
+    	catch(Exception ex) {
+    		System.out.println("Erro do método lerRAs");
+    	}
+    	return RAs;
+    }
+    
+    @SuppressWarnings("finally")
+	public static String lerRA (String path) {
+    	String RAs ="";
+    	try { 		
+				String p = corretor.MyBarcodeReader.readBarCode(path); 
+				RAs=p;
+    	}
+    	catch(Exception ex) {
+    		System.out.println("Erro do método lerRA");
+    	}
+    	finally {
+    		return RAs;
+    	}
+    }
+    
     public static ArrayList<Cartao> ler() throws Exception {
 
         sout("...started");
@@ -83,15 +120,7 @@ public class Main {
             Cartao c = new Cartao();
             //c.setAluno((JOptionPane.showInputDialog(null, "Qual o RA do aluno do arquivo "+s+" ?")));
             //LÊ CODIGO DE BARRAS 
-            
-            
-            
-            
-            
-            
-            
-            
-            
+            c.setAluno(lerRA(s));
             //c.setAluno(I);
             c.setResps(resps);
             System.out.println(c);
