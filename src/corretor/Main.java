@@ -88,6 +88,7 @@ public class Main {
     	try { 		
 				String p = corretor.MyBarcodeReader.readBarCode(path); 
 				RAs=p;
+				System.out.println(p);
     	}
     	catch(Exception ex) {
     		System.out.println("Erro do método lerRA");
