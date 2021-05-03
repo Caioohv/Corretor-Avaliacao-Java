@@ -4,3 +4,5 @@ Projeto desenvolvido na disciplina "Projeto de Software 1", onde o IFMG fez a re
  - Java
  - PostgreSQL
  - OpenCV
+  
+O Projeto só pôde ser desenvolvido graças à utilização do https://github.com/m-cakir/bubble-sheet-multiple-choice-scanner
